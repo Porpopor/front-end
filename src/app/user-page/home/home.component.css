@@ -1,0 +1,123 @@
+.btn-2 {
+    width: 300px;
+    height: 100px;
+    border: none;
+    color: black;
+    border-radius: 4px;
+    transition: ease-out 0.3s;
+    font-size: 2rem;
+    outline: none;
+    border: 3px solid #000000;
+    position: relative;
+    z-index: 1;
+}
+
+.btn-2:hover {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.btn-2::before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #000000;
+}
+
+.btn-2:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
+
+
+.login-card {
+    box-shadow: 10px 10px 5px grey;
+}
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:weight@100;200;300;400;500;600;700;800&display=swap");
+
+body {
+    background-color: #eee;
+    font-family: "Poppins", sans-serif;
+    font-weight: 300
+}
+
+.height {
+    height: 10vh
+}
+
+.search {
+    position: relative;
+    box-shadow: 0 0 40px rgba(51, 51, 51, .1)
+}
+
+.search input {
+    height: 60px;
+    text-indent: 25px;
+    border: 2px solid #d6d4d4
+}
+
+.search input:focus {
+    box-shadow: none;
+    border: 2px solid blue
+}
+
+.search .fa-search {
+    position: absolute;
+    top: 20px;
+    left: 16px
+}
+
+.search button {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    height: 50px;
+    width: 110px;
+    background: blue
+}
+
+.shadows{
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+
+.aaa{
+    cursor: pointer;
+}
+
+.search-sec{
+    padding: 2rem;
+}
+.search-slt{
+    display: block;
+    width: 100%;
+    font-size: 0.875rem;
+    line-height: 1.5;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    height: calc(3rem + 2px) !important;
+    border-radius:0.6rem;
+}
+.wrn-btn{
+    width: 100%;
+    margin-left: 1rem;
+    font-size: 16px;
+    font-weight: 400;
+    text-transform: capitalize;
+    height: calc(3rem + 2px) !important;
+    border-radius:0.6rem;
+}
+
+.topp{
+    margin: 1rem 1rem;
+}

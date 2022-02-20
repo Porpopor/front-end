@@ -1,0 +1,130 @@
+/* .important {
+    font-weight: 700;
+    font-size: x-large;
+} */
+
+/* .shadow{
+    box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
+} */
+
+/* .a-button{
+    font-family: Iconic;
+    font-size: 0.5cm;
+    width: 125px;
+    line-height: 2rem;
+    text-align: center;
+} */
+
+/* .Header_frame__rQbZX{
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    z-index: 1000;
+    padding: 24px 0;
+    transition: all .3s cubic-bezier(.4,0,.2,1);
+    box-shadow: 0 0 5px 0 rgb(0 0 0 / 16%);
+} */
+
+/* .btn {
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    width: 120px;
+    height: 55px;
+    border: none;
+    color: black;
+    border-radius: 4px;
+    transition: ease-out 0.3s;
+    font-size: 1.3rem;
+    outline: none;
+    border: 3px solid #000000;
+    position: relative;
+    z-index: 1;
+} */
+
+.btn2 {
+    background-color: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+    border: 2px solid #000000;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 10px;
+    position: relative;
+    outline: none;
+    z-index: 1;
+}
+
+.btn2:hover {
+    color: rgb(0, 0, 0);
+    cursor: pointer;
+}
+
+.btn2::before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #ffffff;
+}
+
+.btn2:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+.btn3 {
+    background-color: white;
+    color: black;
+    border: 2px solid #000000;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 10px;
+    position: relative;
+    outline: none;
+    z-index: 1;
+}
+
+.btn3:hover {
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+}
+
+.btn3::before {
+    transition: 0.5s all ease;
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 50%;
+    bottom: 0;
+    opacity: 0;
+    content: "";
+    background-color: #000000;
+}
+
+.btn3:hover:before {
+    transition: 0.5s all ease;
+    left: 0;
+    right: 0;
+    opacity: 1;
+    z-index: -1;
+}
+
+.shadows{
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.25);
+}
+.aaa:hover{
+    cursor: pointer;
+}

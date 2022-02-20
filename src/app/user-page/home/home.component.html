@@ -1,0 +1,57 @@
+<app-header></app-header>
+    <div class="container">
+        <div class="row d-flex justify-content-center align-items-center topp">
+            <div class="col-lg-8">
+                <div class="row">
+                    <div class="col-lg-5 col-md-3 col-sm-12 p-0">
+                        <input [(ngModel)]="name_text" type="text" class="form-control search-slt" placeholder="ค้นหาชื่อ">
+                    </div>
+                    <div class="col-lg-5 col-md-3 col-sm-12 p-0">
+                        <select id="mySelect" class="form-control search-slt" [(ngModel)]="province_text">
+                            <option value="" selected>จังหวัด</option>
+                            <option value="{{provinces['province']}}" *ngFor="let provinces of provinceData">
+                                {{provinces['province']}}
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-lg-2 col-md-3 col-sm-12 p-0">
+                        <button  (click)="getDataSearch()" type="button" class="btn btn-web wrn-btn">Search</button>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="col-6">
+                <select class="form-select" style="margin-top: 1rem;" aria-label="Default select example">
+                    <option selected>Search</option>
+                    <option value="{{provinces['province']}}" *ngFor="let provinces of provinceData">{{provinces['province']}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-8">
+                <div class="row">
+                    <div class="search col-6">
+                        <i class="fa fa-search"></i>
+                        <input [(ngModel)]="province_text" type="text" class="form-control" placeholder="ค้าหางาน">
+                        <button (click)="getDataSearch()" class="btn btn-primary">Search</button>
+                    </div>
+                </div>
+            </div> -->
+        </div>
+        <div style="width: 80%;margin: 0 auto;">
+            <div class="row">
+                <div class="col-lg-6" *ngFor="let element of companyWorkList">
+                    <div class="my-2 shadows aaa">
+                        <a (click)="getClick(element['id'])">
+                            <!-- <div class="col-md-4">
+            <img src="..." class="img-fluid rounded-start" alt="...">
+          </div> -->
+                            <div class="card-body">
+                                <h5 class="card-title">{{element['name']}}</h5>
+                                <p class="card-text">{{element['detail']}}</p>
+                                <p class="card-text"><small class="text-muted">{{element['province']}}</small></p>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>

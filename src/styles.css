@@ -8,6 +8,6 @@
 .btn-web:hover{
     color: #D4ECDD;
     background-color: #112031;
-    border: 2px solid #444444;
+    /* border: 2px solid #444444; */
 
 }

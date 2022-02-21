@@ -1,40 +1,30 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css']
+  selector: 'app-profile',
+  templateUrl: './profile.component.html',
+  styleUrls: ['./profile.component.css']
 })
-export class HeaderComponent implements OnInit {
+export class ProfileComponent implements OnInit {
 
+  email ="";
+  firstname = "";
+  lastname ="";
+  phone ="";
+  companyName ="";
   picture ="";
   pathPicture="http://localhost:8080/uploads/image/profile/";
-
+  
   constructor(
     private httpClient:HttpClient,
-    private router : Router,
-    private cookie : CookieService) { }
-  login : boolean = false;
+    private cookie:CookieService
+    ) { }
+
   ngOnInit(): void {
     this.getProfile();
-    if(this.checkLogin()){
-      this.login = true;
-    }else{
-      this.login = false;
-    }
-  }
-
-  logout(): void {
-    this.cookie.remove('token');
-    this.router.navigate(['/login']);
-  }
-
-  checkLogin(){
-    return this.cookie.hasKey('token');
   }
 
   getProfile(){
@@ -42,8 +32,15 @@ export class HeaderComponent implements OnInit {
       headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
     })
     .subscribe((res:any)=> {
+      console.log(res)
+      this.email = res.data.data.email;
+      this.firstname = res.data.data.firstName;
+      this.lastname = res.data.data.lastName;
+      this.phone = res.data.data.phone;
+      this.companyName = res.data.data.nameCompany;
       this.picture = this.pathPicture + res.data.data.picture;
-      console.log(this.picture)
+      // console.log(this.picture)
     })
   }
+
 }

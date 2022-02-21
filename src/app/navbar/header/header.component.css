@@ -43,10 +43,45 @@
     z-index: 1;
 } */
 
+img{
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    margin-right: 0.5rem;
+}
+
+.marr{
+    margin-left: 0.52rem;
+}
+
+.bgbg{
+    background-color: #345B63;
+}
+.btn1 {
+    background-color: #112031;
+    color: #D4ECDD;
+    /* border: 2px solid #000000; */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 10px;
+    position: relative;
+    outline: none;
+    z-index: 1;
+}
+
+.btn1:hover {
+    color: #112031;
+    cursor: pointer;
+    background-color: #D4ECDD;
+}
+
 .btn2 {
-    background-color: rgb(0, 0, 0);
-    color: rgb(255, 255, 255);
-    border: 2px solid #000000;
+    background-color: #D4ECDD;
+    color: #112031;
+    /* border: 2px solid #000000; */
     padding: 10px 20px;
     text-align: center;
     text-decoration: none;
@@ -59,11 +94,12 @@
 }
 
 .btn2:hover {
-    color: rgb(0, 0, 0);
+    color: #D4ECDD;
     cursor: pointer;
+    background-color: #112031;
 }
 
-.btn2::before {
+/* .btn2::before {
     transition: 0.5s all ease;
     position: absolute;
     top: 0;
@@ -81,7 +117,7 @@
     right: 0;
     opacity: 1;
     z-index: -1;
-}
+} */
 .btn3 {
     background-color: white;
     color: black;
@@ -127,4 +163,26 @@
 }
 .aaa:hover{
     cursor: pointer;
+}
+
+.ff{
+    font-size: 1.5rem;
+    color: #D4ECDD;
+}
+
+.ff:hover{
+    color: #112031;
+}
+
+@media (max-width:600px) {
+
+    .marrbot{
+        margin: 1rem;
+    }
+
+    .marr{
+        width: 500px;
+        margin-left: 0rem;
+    }
+    
 }

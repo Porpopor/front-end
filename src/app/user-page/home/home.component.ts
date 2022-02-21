@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
   getData(){
     this.httpClient.post(`${environment.API_URL}/company-work/listAll`, {})
     .subscribe((res:any)=> {
-      console.log(res)
+      // console.log(res)
       this.companyWorkList = res.data.companyWork;
     })
   }
@@ -37,7 +37,7 @@ export class HomeComponent implements OnInit {
   getprovince(){
     this.httpClient.get(`${environment.API_URL2}/v1/thailand/provinces`, {})
     .subscribe((res:any)=> {
-      console.log(res)
+      // console.log(res)
       this.provinceData = res.data;
     })
   }
@@ -45,14 +45,14 @@ export class HomeComponent implements OnInit {
   getDataSearch(){
     this.httpClient.post(`${environment.API_URL}/company-work/listAllByProvince`, {province:this.province_text, name:this.name_text})
     .subscribe((res:any)=> {
-      console.log(res)
+      // console.log(res)
       this.companyWorkList = res.data.companyWork;
     })
   }
 
   getClick(id:any){
-    console.log(id);
-    // this.router.navigate(['/login']);
+    // console.log(id);
+    this.router.navigate(['/login']);
   }
 
 

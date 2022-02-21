@@ -9,12 +9,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { CookieModule } from 'ngx-cookie';
 import { LoginComponent } from './user-page/login/login.component';
+import { ProfileComponent } from './user-page/profile/profile.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileComponent
   ],
   imports: [
     BrowserModule,

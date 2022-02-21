@@ -1,4 +1,4 @@
 function myFunction() {
     console.log("test");
-  document.getElementById("mySelect").value = "";
+  document.getElementById("mySelect").value = "1";
 }

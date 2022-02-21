@@ -1,13 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 .btn-web{
-    color:rgb(0, 0, 0);
-    background-color: rgb(255, 255, 255);
-    border: 2px solid #444444;
+    color:#112031;
+    background-color: #D4ECDD;
+    /* border: 1px solid #345B63; */
 }
 
 .btn-web:hover{
-    color: rgb(255, 255, 255);
-    background-color: rgb(0, 0, 0);
+    color: #D4ECDD;
+    background-color: #112031;
     border: 2px solid #444444;
 
 }

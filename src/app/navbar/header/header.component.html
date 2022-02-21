@@ -1,25 +1,25 @@
-<nav class="navbar navbar-light bg-light">
-    <div class="container">
-      <a class="navbar-brand mb-0 h1"  routerLink="/home">Project-FrontEnd</a>
-      <div ngbDropdown placement="top-right" class="d-inline-block">
-        <button routerLink="/login" class="btn btn2 btn-outline-primary" style="margin-right: 0.8rem;" *ngIf="!login" >เข้าสู่ระบบ</button>
-        <button routerLink="/register" class="btn btn3 btn-outline-primary" *ngIf="!login">สมัครสมาชิก</button>
-        <div class="dropdown"*ngIf="login">
-            <button class="btn btn2 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              User
-            </button>
-            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-              <li><a class="dropdown-item" href="#">โปรไฟล์</a></li>
-              <li><a class="dropdown-item aaa" (click)="logout()" *ngIf="login">ออกจากระบบ</a></li>
-            </ul>
-          </div>
-        <!-- <div ngbDropdownMenu aria-labelledby="dropdownBasic2">
-          <button ngbDropdownItem (click)="logout()" *ngIf="login">ออกจากระบบ</button>
-        </div> -->
+<nav class="navbar bgbg">
+  <div class="container">
+    <div class="col-md-6 col-9 marrbot">
+      <a class="navbar-brand mb-0 h1 ff" routerLink="/home">Project-FrontEnd</a>
+    </div>
+    <div ngbDropdown placement="top-right" class="d-inline-block">
+      <button routerLink="/login" class="btn btn1" style="margin-right: 0.8rem;" *ngIf="!login">เข้าสู่ระบบ</button>
+      <button routerLink="/register" class="btn btn2" *ngIf="!login">สมัครสมาชิก</button>
+      <div class="dropdown" *ngIf="login">
+        <button class="btn btn2 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <img src="{{picture}}" alt="">
+        </button>
+        <ul class="dropdown-menu marr" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item aaa" routerLink="/profile">โปรไฟล์</a></li>
+          <li><a class="dropdown-item aaa" (click)="logout()" *ngIf="login">ออกจากระบบ</a></li>
+        </ul>
       </div>
     </div>
-  </nav>
-  
+  </div>
+</nav>
+
 
 
 

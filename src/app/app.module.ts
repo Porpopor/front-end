@@ -10,13 +10,15 @@ import { FormsModule } from '@angular/forms';
 import { CookieModule } from 'ngx-cookie';
 import { LoginComponent } from './user-page/login/login.component';
 import { ProfileComponent } from './user-page/profile/profile.component';
+import { RegisterComponent } from './user-page/register/register.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomeComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    RegisterComponent
   ],
   imports: [
     BrowserModule,

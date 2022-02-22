@@ -1,25 +1,25 @@
 <app-header></app-header>
-    <div class="container">
-        <div class="row d-flex justify-content-center align-items-center topp">
-            <div class="col-lg-8">
-                <div class="row">
-                    <div class="col-lg-5 col-md-3 col-sm-12 p-0">
-                        <input [(ngModel)]="name_text" type="text" class="form-control search-slt" placeholder="ค้นหาชื่อ">
-                    </div>
-                    <div class="col-lg-5 col-md-3 col-sm-12 p-0">
-                        <select id="mySelect" class="form-control search-slt" [(ngModel)]="province_text">
-                            <option value="" selected>จังหวัด</option>
-                            <option value="{{provinces['province']}}" *ngFor="let provinces of provinceData">
-                                {{provinces['province']}}
-                            </option>
-                        </select>
-                    </div>
-                    <div class="col-lg-2 col-md-3 col-sm-12 p-0">
-                        <button  (click)="getDataSearch()" type="button" class="btn btn-web wrn-btn">Search</button>
-                    </div>
+<div class="container">
+    <div class="row d-flex justify-content-center align-items-center topp" style="margin-top: 3rem;">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-lg-5 col-md-3 col-sm-12 p-0">
+                    <input [(ngModel)]="name_text" type="text" class="form-control search-slt" placeholder="ค้นหาชื่อ">
+                </div>
+                <div class="col-lg-5 col-md-3 col-sm-12 p-0">
+                    <select id="mySelect" class="form-control search-slt" [(ngModel)]="province_text">
+                        <option value="" selected>จังหวัด</option>
+                        <option value="{{provinces['province']}}" *ngFor="let provinces of provinceData">
+                            {{provinces['province']}}
+                        </option>
+                    </select>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-12 p-0">
+                    <button (click)="getDataSearch()" type="button" class="btn btn-web wrn-btn">Search</button>
                 </div>
             </div>
-            <!-- <div class="col-6">
+        </div>
+        <!-- <div class="col-6">
                 <select class="form-select" style="margin-top: 1rem;" aria-label="Default select example">
                     <option selected>Search</option>
                     <option value="{{provinces['province']}}" *ngFor="let provinces of provinceData">{{provinces['province']}}
@@ -35,15 +35,27 @@
                     </div>
                 </div>
             </div> -->
+        <div class="row" style="margin: 0 auto;margin-top: 2rem;">
+            <div class="aaa" (click)="getClick(element['id'])" style="width: 18rem;"
+                *ngFor="let element of companyWorkList">
+                <div class="card">
+                    <img src="assets/images/home/Asus-Rog.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{element['name']}}</h5>
+                        <p class="card-text">{{element['detail']}}</p>
+                        <p class="card-text"><small class="text-muted">{{element['province']}}</small></p>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div style="width: 80%;margin: 0 auto;">
-            <div class="row">
-                <div class="col-lg-6" *ngFor="let element of companyWorkList">
-                    <div class="my-2 shadows aaa pointer-show">
+    </div>
+</div>
+<!-- <div class="col-lg-4 card-mar-top" *ngFor="let element of companyWorkList">
+                    <div class="my-2 card radd aaa">
                         <a (click)="getClick(element['id'])">
-                            <!-- <div class="col-md-4">
-            <img src="..." class="img-fluid rounded-start" alt="...">
-          </div> -->
+                            <div class="">
+                                <img src="assets/images/images (1).png" class="" alt="..." style="width:100%">
+                            </div>
                             <div class="card-body">
                                 <h5 class="card-title">{{element['name']}}</h5>
                                 <p class="card-text">{{element['detail']}}</p>
@@ -51,7 +63,4 @@
                             </div>
                         </a>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                </div> -->

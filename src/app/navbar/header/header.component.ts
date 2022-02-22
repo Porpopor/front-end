@@ -20,9 +20,9 @@ export class HeaderComponent implements OnInit {
     private cookie : CookieService) { }
   login : boolean = false;
   ngOnInit(): void {
-    this.getProfile();
     if(this.checkLogin()){
       this.login = true;
+      this.getProfile();
     }else{
       this.login = false;
     }

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { environment } from 'src/environments/environment';
 
@@ -20,11 +21,19 @@ export class ProfileComponent implements OnInit {
   
   constructor(
     private httpClient:HttpClient,
-    private cookie:CookieService
+    private cookie:CookieService,
+    private router:Router
     ) { }
-
   ngOnInit(): void {
-    this.getProfile();
+    if(!this.checkLogin()){
+      this.router.navigate(['/login']);
+    }else{
+      this.getProfile();
+    }
+  }
+
+  checkLogin(){
+    return this.cookie.hasKey('token');
   }
 
   getProfile(){

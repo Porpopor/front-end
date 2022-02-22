@@ -1,13 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
 .btn-web{
-    color:#112031;
-    background-color: #D4ECDD;
+    color:#ffffff;
+    padding: 10px 20px;
+    background-color: #2e6edf;
     /* border: 1px solid #345B63; */
 }
 
 .btn-web:hover{
-    color: #D4ECDD;
-    background-color: #112031;
+    color: #ffffff;
+    background-color: #2655a8;
     /* border: 2px solid #444444; */
 
+}
+
+@media (max-width:600px){
+    
 }

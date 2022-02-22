@@ -1,28 +1,38 @@
 <app-header></app-header>
-    <div class="profile">
-        <header style="margin-bottom: 2rem;">
-            <h2 style="font-size: 3.5rem;">โปรไฟล์</h2>
-        </header>
-        <div class="row">
-            <div class="col-md-6 col-sm-12 profile-left">
-                <div class="div-image">
-                <img src="{{picture}}" alt="" style="margin-bottom: 1rem;">
+<div class="container">
+    <div class="row topp">
+        <div class="col-4">
+            <img class="img-icon" src="assets/images/profile/icon.png" alt="">
+        </div>
+        <div class="profile shadoww col post-top">
+            <header style="margin-bottom: 2rem;">
+                <h2 style="font-size: 3.5rem;">โปรไฟล์</h2>
+            </header>
+            <div class="row">
+                <div class="col-lg-6 col-md-12 col-sm-12 profile-left">
+                    <label for="formFile" class="form-label">Email</label>
+                    <input class="form-control mar-bottom" type="text" [(ngModel)]="email">
+                    <label for="formFile" class="form-label">ชื่อ</label>
+                    <input class="form-control mar-bottom" type="text" [(ngModel)]="firstname">
+                    <label for="formFile" class="form-label">นามสกุล</label>
+                    <input class="form-control mar-bottom" type="text" [(ngModel)]="lastname">
+                    <label for="formFile" class="form-label">เบอร์โทรศัพท์</label>
+                    <input class="form-control mar-bottom" type="text" [(ngModel)]="phone">
+                    <label for="formFile" class="form-label">บริษัท</label>
+                    <input class="form-control mar-bottom" type="text" [(ngModel)]="companyName">
                 </div>
-                <label for="formFile" class="form-label">อัพโหลดรูปภาพ</label>
-                <input class="form-control" type="file" id="formFile">
-            </div>
-            <div class="col-md-6 col-sm-12 profile-right">
-                <label for="formFile" class="form-label">Email</label>
-                <input class="form-control mar-bottom" type="text" [(ngModel)]="email">
-                <label for="formFile" class="form-label">ชื่อ</label>
-                <input class="form-control mar-bottom" type="text" [(ngModel)]="firstname">
-                <label for="formFile" class="form-label">นามสกุล</label>
-                <input class="form-control mar-bottom" type="text" [(ngModel)]="lastname">
-                <label for="formFile" class="form-label">เบอร์โทรศัพท์</label>
-                <input class="form-control mar-bottom" type="text" [(ngModel)]="phone">
-                <label for="formFile" class="form-label">บริษัท</label>
-                <input class="form-control mar-bottom" type="text" [(ngModel)]="companyName">
-                
+                <div class="col-lg-6 col-md-12 col-sm-12 profile-left">
+                    <div class="row">
+                        <div class="div-image">
+                            <img class="img-profile" src="{{picture}}" alt="" style="margin-bottom: 1rem;">
+                        </div>
+                        <div class="col" style="width: 50%;">
+                            <label for="formFile" class="form-label">อัพโหลดรูปภาพ </label>
+                            <input class="form-control" type="file" id="formFile">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+</div>

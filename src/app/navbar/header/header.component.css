@@ -42,12 +42,24 @@
     position: relative;
     z-index: 1;
 } */
+.dropdown-toggle::after{
+    display: none;
+}
+
+button{
+    font-family: 'Kanit', sans-serif;
+}
+
 
 img{
     border-radius: 50%;
-    width: 25px;
-    height: 25px;
+    width: 30px;
+    height: 30px;
     margin-right: 0.5rem;
+}
+
+img:hover{
+    outline: #6b92d6 solid 2px;
 }
 
 .marr{
@@ -57,9 +69,35 @@ img{
 .bgbg{
     background-color: #345B63;
 }
-.btn1 {
-    background-color: #112031;
+
+.btn-web{
+    background-color: #74747457;
+}
+
+.btn-user {
+    background-color: #D4ECDD;
+    color: #112031;
+    /* border: 2px solid #000000; */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 10px;
+    position: relative;
+    outline: none;
+    z-index: 1;
+}
+
+.btn-user:hover {
     color: #D4ECDD;
+    cursor: pointer;
+    background-color: #112031;
+}
+
+.btn1 {
+    background-color: #f8f9fa;
+    color: #000000;
     /* border: 2px solid #000000; */
     padding: 10px 20px;
     text-align: center;
@@ -73,14 +111,16 @@ img{
 }
 
 .btn1:hover {
-    color: #112031;
+    color: #000000;
     cursor: pointer;
-    background-color: #D4ECDD;
+    background-color: #74747457;
+    /* border: 1px solid #8d8d8d; */
+    opacity: 0.9;
 }
 
 .btn2 {
-    background-color: #D4ECDD;
-    color: #112031;
+    background-color: #2e6edf;
+    color: #ffffff;
     /* border: 2px solid #000000; */
     padding: 10px 20px;
     text-align: center;
@@ -94,9 +134,9 @@ img{
 }
 
 .btn2:hover {
-    color: #D4ECDD;
+    color: #ffffff;
     cursor: pointer;
-    background-color: #112031;
+    background-color: #2655a8;
 }
 
 /* .btn2::before {
@@ -167,11 +207,21 @@ img{
 
 .ff{
     font-size: 1.5rem;
-    color: #D4ECDD;
+    color: #212121;
+    font-family: 'Kanit', sans-serif;
+    /* font-family: 'Poppins', sans-serif; */
+}
+
+.full-button{
+    width: 100%;
 }
 
 .ff:hover{
-    color: #112031;
+    color: #112031a2;
+}
+
+.shadoww{
+    box-shadow: 0px 4px 20px 0 rgba(61, 61, 61, 0.2);
 }
 
 @media (max-width:600px) {
@@ -183,6 +233,16 @@ img{
     .marr{
         width: 500px;
         margin-left: 0rem;
+    }
+
+    .untoken{
+        width: 100%;
+        margin-left: 0;
+        margin-top: 0.5rem;
+    }
+
+    .btn-o{
+        width: 100%;
     }
     
 }

@@ -1,13 +1,50 @@
-<nav class="navbar bgbg">
+<nav class="navbar navbar-expand-lg navbar-light bg-light shadoww">
   <div class="container">
-    <div class="col-md-6 col-9 marrbot">
+    <a class="navbar-brand ff" routerLink="/home">Project-FrontEnd</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+      </ul>
+      <div class="d-flex">
+        <button routerLink="/register" class="btn btn2 untoken" *ngIf="!login">สมัครสมาชิก</button>
+      </div>
+      <div><button routerLink="/login" class="btn btn1 untoken" style="margin-right: 0.8rem;"
+          *ngIf="!login">เข้าสู่ระบบ</button></div>
+      <ul class="dropdown-menu marr" aria-labelledby="dropdownMenuButton1">
+        <li><a class="dropdown-item aaa" routerLink="/profile">โปรไฟล์</a></li>
+        <li><a class="dropdown-item aaa" (click)="logout()" *ngIf="login">ออกจากระบบ</a></li>
+      </ul>
+      <div class="dropdown" *ngIf="login">
+        <a class="btn btn-o dropdown-toggle btn-outline" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <img src="{{picture}}" alt="">
+        </a>
+        <ul class="dropdown-menu full-button" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item aaa" routerLink="/profile">โปรไฟล์</a></li>
+          <li><a class="dropdown-item aaa" (click)="logout()" *ngIf="login">ออกจากระบบ</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</nav>
+
+
+
+
+
+<!-- <nav class="navbar bgbg navbar-expand-lg">
+  <div class="container">
+    <div class="col-md-6 col-sm-3 marrbot">
       <a class="navbar-brand mb-0 h1 ff" routerLink="/home">Project-FrontEnd</a>
     </div>
     <div ngbDropdown placement="top-right" class="d-inline-block">
       <button routerLink="/login" class="btn btn1" style="margin-right: 0.8rem;" *ngIf="!login">เข้าสู่ระบบ</button>
-      <button routerLink="/register" class="btn btn2" *ngIf="!login">สมัครสมาชิก</button>
+      <button routerLink="/register" class="btn btn2 regis" *ngIf="!login">สมัครสมาชิก</button>
       <div class="dropdown" *ngIf="login">
-        <button class="btn btn2 dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+        <button class="btn btn-user dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
           aria-expanded="false">
           <img src="{{picture}}" alt="">
         </button>
@@ -18,7 +55,7 @@
       </div>
     </div>
   </div>
-</nav>
+</nav> -->
 
 
 

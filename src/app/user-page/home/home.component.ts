@@ -51,8 +51,11 @@ export class HomeComponent implements OnInit {
   }
 
   getClick(id:any){
-    // console.log(id);
-    this.router.navigate(['/login']);
+    this.httpClient.post(`${environment.API_URL}/company-work/view-byid`, {id})
+    .subscribe((res:any)=> {
+      console.log(res);
+      this.router.navigate(['/view']);
+    })
   }
 
 

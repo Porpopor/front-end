@@ -13,6 +13,8 @@ export class LoginComponent implements OnInit {
   email = ""
   passWord = ""
 
+  username =""
+
 
 
 constructor(private httpClient: HttpClient,

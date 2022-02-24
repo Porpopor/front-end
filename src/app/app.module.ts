@@ -11,6 +11,9 @@ import { CookieModule } from 'ngx-cookie';
 import { LoginComponent } from './user-page/login/login.component';
 import { ProfileComponent } from './user-page/profile/profile.component';
 import { RegisterComponent } from './user-page/register/register.component';
+import { ForgetpasswordComponent } from './user-page/forgetpassword/forgetpassword.component';
+import { ViewCompanyworkComponent } from './user-page/view-companywork/view-companywork.component';
+import { ResetpasswordComponent } from './user-page/resetpassword/resetpassword.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -18,7 +21,10 @@ import { RegisterComponent } from './user-page/register/register.component';
     HomeComponent,
     LoginComponent,
     ProfileComponent,
-    RegisterComponent
+    RegisterComponent,
+    ForgetpasswordComponent,
+    ViewCompanyworkComponent,
+    ResetpasswordComponent
   ],
   imports: [
     BrowserModule,

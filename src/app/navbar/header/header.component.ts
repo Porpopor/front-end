@@ -11,19 +11,22 @@ import { environment } from 'src/environments/environment';
 })
 export class HeaderComponent implements OnInit {
 
-  picture ="";
-  pathPicture="http://localhost:8080/uploads/image/profile/";
+  email = "";
+  picture = "";
+  verifyEmail: any;
+  pathPicture = "http://localhost:8080/uploads/image/profile/";
 
   constructor(
-    private httpClient:HttpClient,
-    private router : Router,
-    private cookie : CookieService) { }
-  login : boolean = false;
+    private httpClient: HttpClient,
+    private router: Router,
+    private cookie: CookieService) { }
+  login: boolean = false;
+  verify: boolean = true;
   ngOnInit(): void {
-    if(this.checkLogin()){
+    if (this.checkLogin()) {
       this.login = true;
       this.getProfile();
-    }else{
+    } else {
       this.login = false;
     }
   }
@@ -33,17 +36,21 @@ export class HeaderComponent implements OnInit {
     this.router.navigate(['/login']);
   }
 
-  checkLogin(){
+  checkLogin() {
     return this.cookie.hasKey('token');
   }
 
-  getProfile(){
+  getProfile() {
     this.httpClient.get(`${environment.API_URL}/user/profile`, {
       headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
     })
-    .subscribe((res:any)=> {
-      this.picture = this.pathPicture + res.data.data.picture;
-      console.log(this.picture)
-    })
+      .subscribe((res: any) => {
+        this.picture = this.pathPicture + res.data.data.picture;
+        this.verifyEmail = res.data.data.verifyEmail;
+        this.email = res.data.data.email;
+        if (res.data.data.verifyEmail == 0) {
+          this.verify = false;
+        }
+      })
   }
 }

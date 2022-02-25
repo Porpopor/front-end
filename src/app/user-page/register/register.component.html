@@ -6,8 +6,20 @@
       <br>
 
       <div class="form-outline form-white mb-4">
-        <label for="typeEmailX">Username</label>
-        <input [(ngModel)]="username" type="email" (keyup.enter)="sendit($event)" id="typeEmailX"
+        <label for="typeEmailX">Email</label>
+        <input [formControl]="emailForm" [(ngModel)]="email" type="email" (keyup.enter)="sendit($event)" id="typeEmailX"
+          class="form-control form-control-lg" />
+          <small *ngIf="emailForm.invalid && emailForm.touched">กรุณากรอก Email</small>
+      </div>
+      <div class="form-outline form-white mb-4">
+        <label for="typeEmailX">Firstname</label>
+        <input [(ngModel)]="firstName" type="text" (keyup.enter)="sendit($event)" id="typeEmailX"
+          class="form-control form-control-lg" />
+          <small *ngIf="emailForm.invalid && emailForm.touched">กรุณากรอก Email</small>
+      </div>
+      <div class="form-outline form-white mb-4">
+        <label for="typeEmailX">Lastname</label>
+        <input [(ngModel)]="lastName" type="text" (keyup.enter)="sendit($event)" id="typeEmailX"
           class="form-control form-control-lg" />
       </div>
 
@@ -16,7 +28,9 @@
         <input [(ngModel)]="passWord" type="password" (keyup.enter)="sendit($event)" id="typePasswordX"
           class="form-control form-control-lg" />
       </div>
-      <button class="btn btn-web" style="width: 100%;" type="submit" (click)="onLogin2()">Sign Up</button>
+      <button class="btn btn-web" style="width: 100%;" type="submit" [disabled]="emailForm.invalid">Sign Up</button>
     </div>
   </div>
 </div>
+
+{{emailForm.errors}}

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
 
@@ -10,8 +11,15 @@ import { environment } from 'src/environments/environment';
 })
 export class RegisterComponent implements OnInit {
 
-  username =""
-  passWord =""
+  email ="";
+
+  firstName ="";
+
+  lastName ="";
+
+  passWord ="";
+
+  emailForm = new FormControl(null,[Validators.required]);
 
   constructor(
     private httpClient:HttpClient,
@@ -23,19 +31,19 @@ export class RegisterComponent implements OnInit {
 
   sendit(data:any){
     // console.log("Valueasd",data);
-    this.onLogin2();
+    // this.onLogin2();
   }
 
-  onLogin2() {
-    this.httpClient.post(`${environment.API_URL}/user-profile/save`, { userName: this.username, passWord: this.passWord })
-      .subscribe((res: any) => {
-        res.userName = this.username;
-        res.passWord = this.passWord;
-        console.log(res);
-        this.router.navigate(['/login']);
-        // this.cookie.put('token', res.data.token)
-        // this.router.navigate(["/home"])
-      })
-  }
+  // onLogin2() {
+  //   this.httpClient.post(`${environment.API_URL}/user-profile/save`, { userName: this.username, passWord: this.passWord })
+  //     .subscribe((res: any) => {
+  //       res.userName = this.username;
+  //       res.passWord = this.passWord;
+  //       console.log(res);
+  //       this.router.navigate(['/login']);
+  //       // this.cookie.put('token', res.data.token)
+  //       // this.router.navigate(["/home"])
+  //     })
+  // }
 
 }

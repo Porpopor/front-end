@@ -10,16 +10,19 @@
             </header>
             <div class="row">
                 <div class="col-lg-6 col-md-12 col-sm-12 profile-left">
-                    <label for="formFile" class="form-label">Email</label>
-                    <input class="form-control mar-bottom" type="text" [(ngModel)]="email">
-                    <label for="formFile" class="form-label">ชื่อ</label>
-                    <input class="form-control mar-bottom" type="text" [(ngModel)]="firstname">
-                    <label for="formFile" class="form-label">นามสกุล</label>
-                    <input class="form-control mar-bottom" type="text" [(ngModel)]="lastname">
-                    <label for="formFile" class="form-label">เบอร์โทรศัพท์</label>
-                    <input class="form-control mar-bottom" type="text" [(ngModel)]="phone">
-                    <label for="formFile" class="form-label">บริษัท</label>
-                    <input class="form-control mar-bottom" type="text" [(ngModel)]="companyName">
+                    <div><label for="email" class="form-label">Email :</label>
+                        <button [disabled]="click" *ngIf="!verify" (click)="onClick()" class="verify">not verified</button>
+                        <button *ngIf="verify" class="verified">Verified</button>
+                        <span class="sent-email">{{sentEmail}}</span></div>
+                    <input class="form-control mar-bottom" type="text" id="email" [(ngModel)]="email">
+                    <label for="firstname" class="form-label">ชื่อ</label>
+                    <input class="form-control mar-bottom" type="text" id="firstname" [(ngModel)]="firstname">
+                    <label for="lastname" class="form-label">นามสกุล</label>
+                    <input class="form-control mar-bottom" type="text" id="lastname" [(ngModel)]="lastname">
+                    <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
+                    <input class="form-control mar-bottom" type="text" id="phone" [(ngModel)]="phone">
+                    <label for="company" class="form-label">บริษัท</label>
+                    <input class="form-control mar-bottom" type="text" id="company" [(ngModel)]="companyName">
                 </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 profile-left">
                     <div class="row">

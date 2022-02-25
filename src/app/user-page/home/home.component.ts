@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { environment } from 'src/environments/environment';
 
-declare function myFunction() : any
+declare function myFunction(): any
 
 @Component({
   selector: 'app-home',
@@ -13,49 +13,56 @@ declare function myFunction() : any
 })
 export class HomeComponent implements OnInit {
 
-  province_text =""
-  name_text =""
+  province_text = "";
+  name_text = "";
+  id: string | undefined;
 
   companyWorkList = [];
-  provinceData =[];
+  provinceData = [];
 
-  constructor(private httpClient: HttpClient, private router: Router ,private cookie : CookieService) { }
+  constructor(
+    private httpClient: HttpClient,
+    private router: Router,
+    private cookie: CookieService,
+    private activateRoute: ActivatedRoute
+  ) {
+  }
 
   ngOnInit(): void {
     this.getData();
     this.getprovince();
   }
 
-  getData(){
+  getData() {
     this.httpClient.post(`${environment.API_URL}/company-work/listAll`, {})
-    .subscribe((res:any)=> {
-      // console.log(res)
-      this.companyWorkList = res.data.companyWork;
-    })
+      .subscribe((res: any) => {
+        // console.log(res)
+        this.companyWorkList = res.data.companyWork;
+      })
   }
 
-  getprovince(){
+  getprovince() {
     this.httpClient.get(`${environment.API_URL2}/v1/thailand/provinces`, {})
-    .subscribe((res:any)=> {
-      // console.log(res)
-      this.provinceData = res.data;
-    })
+      .subscribe((res: any) => {
+        // console.log(res)
+        this.provinceData = res.data;
+      })
   }
 
-  getDataSearch(){
-    this.httpClient.post(`${environment.API_URL}/company-work/listAllByProvince`, {province:this.province_text, name:this.name_text})
-    .subscribe((res:any)=> {
-      // console.log(res)
-      this.companyWorkList = res.data.companyWork;
-    })
+  getDataSearch() {
+    this.httpClient.post(`${environment.API_URL}/company-work/listAllByProvince`, { province: this.province_text, name: this.name_text })
+      .subscribe((res: any) => {
+        // console.log(res)
+        this.companyWorkList = res.data.companyWork;
+      })
   }
 
-  getClick(id:any){
-    this.httpClient.post(`${environment.API_URL}/company-work/view-byid`, {id})
-    .subscribe((res:any)=> {
-      console.log(res);
-      this.router.navigate(['/view']);
-    })
+  getClick(id: any) {
+    this.httpClient.post(`${environment.API_URL}/company-work/view-byid`, { id })
+      .subscribe((res: any) => {
+        console.log(res);
+        this.router.navigate([`/view/${id}`],{ relativeTo: this.activateRoute });
+      })
   }
 
 

@@ -1,0 +1,15 @@
+<div>
+    <div class="img-icon">
+      <img src="assets/images/login/icon.png" alt="">
+    </div>
+    <div class="text-body">
+      <h1>ยินดีด้วย!</h1>
+      <h3>คุณได้ยืนยัน Email เรียบร้อยแล้ว</h3>
+    </div>
+    <div *ngIf="login" class="text-body tap-signin">
+      <h4>คลิกที่นี่เพื่อ <a class="text-deco" routerLink="/home">เข้าสู่เว็บไซต์</a></h4>
+    </div>
+    <div *ngIf="!login" class="text-body tap-signin">
+        <h4>คลิกที่นี่เพื่อ <a class="text-deco" routerLink="/login">เข้าสู่ระบบ</a></h4>
+      </div>
+  </div>

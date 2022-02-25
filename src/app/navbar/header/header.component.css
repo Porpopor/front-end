@@ -50,6 +50,23 @@ button{
     font-family: 'Kanit', sans-serif;
 }
 
+.tap-verify{
+    background-color: #ffc107;
+    text-align: center;
+    cursor: pointer;
+}
+
+.a-login{
+    text-decoration: none;
+    color: #185ADB;
+    font-family: 'Kanit', sans-serif;
+}
+
+.a-login:hover{
+    text-decoration: none;
+    color: #ffffff;
+}
+
 
 img{
     border-radius: 50%;

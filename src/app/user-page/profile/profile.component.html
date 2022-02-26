@@ -9,9 +9,9 @@
                 <h2 style="font-size: 3.5rem;">โปรไฟล์</h2>
             </header>
             <div class="row">
-                <div class="col-lg-6 col-md-12 col-sm-12 profile-left">
+                <div class="col-lg-6 col-md-12 col-sm-12">
                     <div><label for="email" class="form-label">Email :</label>
-                        <button [disabled]="click" *ngIf="!verify" (click)="onClick()" class="verify">not verified</button>
+                        <button [disabled]="click" *ngIf="!verify" (click)="onClick()" class="verify">Sent Verify</button>
                         <button *ngIf="verify" class="verified">Verified</button>
                         <span class="sent-email">{{sentEmail}}</span></div>
                     <input class="form-control mar-bottom" type="text" id="email" [(ngModel)]="email">
@@ -29,7 +29,7 @@
                         <div class="div-image">
                             <img class="img-profile" src="{{picture}}" alt="" style="margin-bottom: 1rem;">
                         </div>
-                        <div class="col" style="width: 50%;">
+                        <div class="col" style="width: 50%;margin-top: 1.3rem;">
                             <label for="formFile" class="form-label">อัพโหลดรูปภาพ </label>
                             <input class="form-control" type="file" id="formFile">
                         </div>

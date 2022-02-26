@@ -21,6 +21,8 @@ export class RegisterComponent implements OnInit {
 
   emailForm = new FormControl(null,[Validators.required]);
 
+  firstnameForm = new FormControl(null,Validators.required);
+
   constructor(
     private httpClient:HttpClient,
     private router:Router

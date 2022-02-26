@@ -13,22 +13,22 @@ input,h2,label{
 
 .verify{
     text-decoration: none;
-    background-color: #dc3545;
+    background-color: #ffc107;
     padding: 2px;
     border-radius: 0.25rem;
-    border: 1px solid #dc3545;
+    border: 1px solid #ffc107;
     color: #fff;
     width: 100px;
     margin-left: 0.5rem;
 }
 
 .verify:hover{
-    background-color: rgb(173, 55, 67);
-    border: 1px solid rgb(173, 55, 67);
+    background-color: #cc9a03;
+    border: 1px solid #cc9a03;
 }
 
 .verified{
-    cursor: pointer;
+    cursor: default;
     text-decoration: none;
     background-color: #198754;
     padding: 2px;
@@ -46,7 +46,7 @@ input,h2,label{
 }
 
 .topp{
-    margin-top: 8rem;
+    margin-top: 12rem;
 }
 
 .shadoww{
@@ -105,10 +105,11 @@ input,h2,label{
     }
 
     .img-icon{
-        width: 200%;
+        margin-top: 5rem;
+        width: 80%;
         position: relative;
         /* z-index: 1; */
-        left: 75px;
+        left: 5px;
         bottom: 0px;
     }
 }

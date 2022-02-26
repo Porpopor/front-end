@@ -12,14 +12,14 @@
           <small *ngIf="emailForm.invalid && emailForm.touched">กรุณากรอก Email</small>
       </div>
       <div class="form-outline form-white mb-4">
-        <label for="typeEmailX">Firstname</label>
-        <input [(ngModel)]="firstName" type="text" (keyup.enter)="sendit($event)" id="typeEmailX"
+        <label for="typeFirstnameX">Firstname</label>
+        <input [(ngModel)]="firstName" type="text" (keyup.enter)="sendit($event)" id="typeFirstnameX"
           class="form-control form-control-lg" />
-          <small *ngIf="emailForm.invalid && emailForm.touched">กรุณากรอก Email</small>
+          <small *ngIf="firstnameForm.invalid && firstnameForm.touched">กรุณากรอก Email</small>
       </div>
       <div class="form-outline form-white mb-4">
-        <label for="typeEmailX">Lastname</label>
-        <input [(ngModel)]="lastName" type="text" (keyup.enter)="sendit($event)" id="typeEmailX"
+        <label for="typeLastnameX">Lastname</label>
+        <input [(ngModel)]="lastName" type="text" (keyup.enter)="sendit($event)" id="typeLastnameX"
           class="form-control form-control-lg" />
       </div>
 

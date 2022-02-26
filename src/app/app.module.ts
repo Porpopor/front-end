@@ -15,6 +15,8 @@ import { ForgetpasswordComponent } from './user-page/forgetpassword/forgetpasswo
 import { ViewCompanyworkComponent } from './user-page/view-companywork/view-companywork.component';
 import { ResetpasswordComponent } from './user-page/resetpassword/resetpassword.component';
 import { VerifyEmailComponent } from './user-page/verify-email/verify-email.component';
+import { FindJobComponent } from './user-page/find-job/find-job.component';
+import { FooterComponent } from './navbar/footer/footer.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +28,9 @@ import { VerifyEmailComponent } from './user-page/verify-email/verify-email.comp
     ForgetpasswordComponent,
     ViewCompanyworkComponent,
     ResetpasswordComponent,
-    VerifyEmailComponent
+    VerifyEmailComponent,
+    FindJobComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

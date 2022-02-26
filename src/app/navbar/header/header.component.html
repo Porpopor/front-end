@@ -1,4 +1,5 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light shadoww">
+<header>
+<nav class="navbar navbar-expand-lg navbar-light bg-light fixed-nav" [class.header_change]="newNav">
   <div class="container">
     <a class="navbar-brand ff" routerLink="/home">Project-FrontEnd</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
@@ -17,6 +18,9 @@
         <li><a class="dropdown-item aaa" routerLink="/profile">โปรไฟล์</a></li>
         <li><a class="dropdown-item aaa" (click)="logout()" *ngIf="login">ออกจากระบบ</a></li>
       </ul>
+      <div *ngIf="!verify">
+        <button routerLink="/profile" class="a-login verify" style="font-size: 1.3rem;color:cornsilk ;">Email not verified</button>
+      </div>
       <div class="dropdown" *ngIf="login">
         <a class="btn btn-o dropdown-toggle btn-outline" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
           aria-expanded="false">
@@ -30,10 +34,7 @@
     </div>
   </div>
 </nav>
-  <div *ngIf="!verify" class="tap-verify" routerLink="/profile">
-    <a class="a-login" style="font-size: 1.3rem;color:cornsilk ;">Email not verified</a>
-  </div>
-
+</header>
 
 
 

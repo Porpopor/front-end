@@ -1,6 +1,7 @@
 import { NgModule, ViewChild } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './navbar/header/header.component';
+import { FindJobComponent } from './user-page/find-job/find-job.component';
 import { ForgetpasswordComponent } from './user-page/forgetpassword/forgetpassword.component';
 import { HomeComponent } from './user-page/home/home.component';
 import { LoginComponent } from './user-page/login/login.component';
@@ -24,6 +25,7 @@ const routes: Routes = [
   { path: 'reset-password/:id', component: ResetpasswordComponent },
   { path: 'verify-email', component: VerifyEmailComponent },
   { path: 'verify-email/:id', component: VerifyEmailComponent },
+  { path: 'find-job', component: FindJobComponent }
 
 
 

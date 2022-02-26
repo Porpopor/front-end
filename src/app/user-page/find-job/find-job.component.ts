@@ -4,14 +4,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { environment } from 'src/environments/environment';
 
-declare function myFunction(): any
-
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  selector: 'app-find-job',
+  templateUrl: './find-job.component.html',
+  styleUrls: ['./find-job.component.css']
 })
-export class HomeComponent implements OnInit {
+export class FindJobComponent implements OnInit {
 
   province_text = "";
   name_text = "";
@@ -64,6 +62,4 @@ export class HomeComponent implements OnInit {
         this.router.navigate([`/view/${id}`],{ relativeTo: this.activateRoute });
       })
   }
-
-
 }

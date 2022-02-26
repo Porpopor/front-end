@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { environment } from 'src/environments/environment';
@@ -22,7 +22,20 @@ export class HeaderComponent implements OnInit {
     private cookie: CookieService) { }
   login: boolean = false;
   verify: boolean = true;
+
+  @HostBinding('class.header_change') newNav:boolean = false;
+
+  @HostListener('window:scroll')
+  onScroll(){
+    // console.log(window.scrollY);
+    if(window.scrollY >= 10){
+      this.newNav = true;
+    }else{
+      this.newNav = false;
+    }
+  }
   ngOnInit(): void {
+    // console.log(window.scrollY);
     if (this.checkLogin()) {
       this.login = true;
       this.getProfile();

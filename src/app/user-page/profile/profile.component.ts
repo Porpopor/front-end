@@ -17,7 +17,7 @@ export class ProfileComponent implements OnInit {
   phone = "";
   companyName = "";
   picture = "";
-  pathPicture = "http://localhost:8080/uploads/image/profile/";
+  pathPicture = "http://localhost:8080/uploads/image/UserProfile/";
   sentEmail ="";
 
   verify: boolean = false;
@@ -49,7 +49,6 @@ export class ProfileComponent implements OnInit {
         this.firstname = res.data.data.firstName;
         this.lastname = res.data.data.lastName;
         this.phone = res.data.data.phone;
-        this.companyName = res.data.data.nameCompany;
         this.picture = this.pathPicture + res.data.data.picture;
         if(res.data.data.verifyEmail == 1){
         this.verify = true;

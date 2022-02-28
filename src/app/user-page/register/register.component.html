@@ -1,36 +1,41 @@
 <app-header></app-header>
 <div class="container">
-  <div class="marr">
-    <div class="login-form mb-md-5 mt-md-4 shadoww">
-      <h2 class="fw-bold text-uppercase" style="margin-top: 1rem;">สมัครสมาชิก</h2>
-      <br>
+  <div class="row" style="margin-top: 12rem;">
+    <div class="col-xl-8 col-lg-6 col-md-4 col-sm-12">
+      <img class="img-icon" src="assets\images\register\logo.png" alt="">
+    </div>
+    <div class="col-xl-4 col-lg-6 col-md-8 col">
+      <div class="login-form shadoww">
+        <div class="sss">
+          <h2 class="fw-bold text-uppercase texx">สมัครสมาชิก</h2>
+          <br>
 
-      <div class="form-outline form-white mb-4">
-        <label for="typeEmailX">Email</label>
-        <input [formControl]="emailForm" [(ngModel)]="email" type="email" (keyup.enter)="sendit($event)" id="typeEmailX"
-          class="form-control form-control-lg" />
-          <small *ngIf="emailForm.invalid && emailForm.touched">กรุณากรอก Email</small>
+          <div class="form-outline form-white mb-4">
+            <label for="typeEmailX">Email</label>
+            <input [formControl]="emailForm" [(ngModel)]="email" type="email" (keyup.enter)="sendit($event)"
+              id="typeEmailX" class="form-control form-control-lg" />
+            <small *ngIf="emailForm.invalid && emailForm.touched">กรุณากรอก Email</small>
+          </div>
+          <div class="form-outline form-white mb-4">
+            <label for="typePasswordX">Password</label>
+            <input [(ngModel)]="passWord" type="password" (keyup.enter)="sendit($event)" id="typePasswordX"
+              class="form-control form-control-lg" />
+          </div>
+          <div class="form-outline form-white mb-4">
+            <label for="typeFirstnameX">Firstname</label>
+            <input [(ngModel)]="firstName" type="text" (keyup.enter)="sendit($event)" id="typeFirstnameX"
+              class="form-control form-control-lg" />
+            <small *ngIf="firstnameForm.invalid && firstnameForm.touched">กรุณากรอก Email</small>
+          </div>
+          <div class="form-outline form-white mb-4">
+            <label for="typeLastnameX">Lastname</label>
+            <input [(ngModel)]="lastName" type="text" (keyup.enter)="sendit($event)" id="typeLastnameX"
+              class="form-control form-control-lg" />
+          </div>
+          
+          <button class="btn btn-web" style="width: 100%;" type="submit" [disabled]="emailForm.invalid">Sign Up</button>
+        </div>
       </div>
-      <div class="form-outline form-white mb-4">
-        <label for="typeFirstnameX">Firstname</label>
-        <input [(ngModel)]="firstName" type="text" (keyup.enter)="sendit($event)" id="typeFirstnameX"
-          class="form-control form-control-lg" />
-          <small *ngIf="firstnameForm.invalid && firstnameForm.touched">กรุณากรอก Email</small>
-      </div>
-      <div class="form-outline form-white mb-4">
-        <label for="typeLastnameX">Lastname</label>
-        <input [(ngModel)]="lastName" type="text" (keyup.enter)="sendit($event)" id="typeLastnameX"
-          class="form-control form-control-lg" />
-      </div>
-
-      <div class="form-outline form-white mb-4">
-        <label for="typePasswordX">Password</label>
-        <input [(ngModel)]="passWord" type="password" (keyup.enter)="sendit($event)" id="typePasswordX"
-          class="form-control form-control-lg" />
-      </div>
-      <button class="btn btn-web" style="width: 100%;" type="submit" [disabled]="emailForm.invalid">Sign Up</button>
     </div>
   </div>
 </div>
-
-{{emailForm.errors}}

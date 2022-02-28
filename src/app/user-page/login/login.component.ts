@@ -16,7 +16,8 @@ export class LoginComponent implements OnInit {
   username =""
 
 
-
+changeLogin:boolean = true;
+changeLogin2:boolean = false;
 constructor(private httpClient: HttpClient,
   private cookie: CookieService,
   private router: Router) { }
@@ -39,6 +40,17 @@ onLogin() {
 sendit(data:any){
   // console.log("Valueasd",data);
   this.onLogin();
+}
+
+onChangeLogin(){
+    this.changeLogin = true;
+    this.changeLogin2 = false;
+    console.log(this.changeLogin);
+}
+onChangeLogin2(){
+  this.changeLogin = false;
+  this.changeLogin2 = true;
+  console.log(this.changeLogin);
 }
 
 }

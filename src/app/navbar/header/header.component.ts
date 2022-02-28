@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   email = "";
   picture = "";
   verifyEmail: any;
-  pathPicture = "http://localhost:8080/uploads/image/profile/";
+  pathPicture = "http://localhost:8080/uploads/image/UserProfile/";
 
   constructor(
     private httpClient: HttpClient,

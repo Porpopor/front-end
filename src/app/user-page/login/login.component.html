@@ -1,28 +1,63 @@
 <app-header></app-header>
 <div class="container">
-  <div class="marr">
-    <div class="login-form mb-md-5 mt-md-4 shadoww">
-      <h2 class="fw-bold text-uppercase" style="margin-top: 1rem;">เข้าสู่ระบบ</h2>
-      <br>
+  <div class="row" style="margin-top: 12rem;">
+    <div class="col-xl-8 col-lg-6 col-md-4 col-sm-12">
+      <img class="img-icon" src="assets\images\login\logo.png" alt="">
+    </div>
+    <div class="col-xl-4 col-lg-6 col-md-8 col">
+      <div class="login-form shadoww">
+        <div class="tabb">
+          <a class="nav-link active aaa" [ngClass]="{'login-form-active':changeLogin == true}" aria-current="page" (click)="onChangeLogin()" >
+            <img style="width: 12%;margin-right: 8px;" src="assets\images\login\user.png" alt=""><span>หางาน</span></a>
+          <a class="nav-link aaa" [ngClass]="{'login-form-active':changeLogin2 == true}" (click)="onChangeLogin2()">
+            <img style="width: 12%;margin-right: 8px;" src="assets\images\login\company.png" alt=""><span>หาพนักงาน</span></a>
+        </div>
+        <div class="sss" [ngClass]="{'test':changeLogin2 == true}">
+          <h2 class="fw-bold text-uppercase texx">เข้าสู่ระบบ User</h2>
+          <br>
+          <div class="form-outline form-white mb-4">
+            <label for="typeEmailX">Email</label>
+            <input [(ngModel)]="email" type="email" (keyup.enter)="sendit($event)" id="typeEmailX"
+              class="form-control form-control-lg" />
+          </div>
 
-      <div class="form-outline form-white mb-4">
-        <label for="typeEmailX">Email</label>
-        <input [(ngModel)]="email" type="email" (keyup.enter)="sendit($event)" id="typeEmailX"
-          class="form-control form-control-lg" />
-      </div>
+          <div class="form-outline form-white mb-4">
+            <label for="typePasswordX">Password</label>
+            <input [(ngModel)]="passWord" type="password" (keyup.enter)="sendit($event)" id="typePasswordX"
+              class="form-control form-control-lg" />
+          </div>
+          <button class="btn btn-web" style="width: 100%;" type="submit" (click)="onLogin()">Sign In</button>
+          <div class="forget" style="margin: 2rem;text-align: center;">
+            <p class="small pb-lg-2"><a class="a-login2" routerLink="/forget-password">Forgot Password?</a></p>
+          </div>
 
-      <div class="form-outline form-white mb-4">
-        <label for="typePasswordX">Password</label>
-        <input [(ngModel)]="passWord" type="password" (keyup.enter)="sendit($event)" id="typePasswordX"
-          class="form-control form-control-lg" />
-      </div>
-      <button class="btn btn-web" style="width: 100%;" type="submit" (click)="onLogin()">Sign In</button>
-      <div class="forget" style="margin: 2rem;text-align: center;">
-        <p class="small pb-lg-2"><a class="a-login2" routerLink="/forget-password">Forgot Password?</a></p>
-      </div>
+          <div class="tap-signup">
+            Need an account?<a class="a-login" routerLink="/register"> Sign up now!</a>
+          </div>
+        </div>
+        <div class="sss" [ngClass]="{'test':changeLogin == true}">
+          <h2 class="fw-bold text-uppercase texx">เข้าสู่ระบบ Company</h2>
+          <br>
+          <div class="form-outline form-white mb-4">
+            <label for="typeEmailX">Email</label>
+            <input [(ngModel)]="email" type="email" (keyup.enter)="sendit($event)" id="typeEmailX"
+              class="form-control form-control-lg" />
+          </div>
 
-      <div class="tap-signup">
-        Need an account?<a class="a-login" routerLink="/register"> Sign up now!</a>
+          <div class="form-outline form-white mb-4">
+            <label for="typePasswordX">Password</label>
+            <input [(ngModel)]="passWord" type="password" (keyup.enter)="sendit($event)" id="typePasswordX"
+              class="form-control form-control-lg" />
+          </div>
+          <button class="btn btn-web" style="width: 100%;" type="submit" (click)="onLogin()">Sign In</button>
+          <div class="forget" style="margin: 2rem;text-align: center;">
+            <p class="small pb-lg-2"><a class="a-login2" routerLink="/forget-password">Forgot Password?</a></p>
+          </div>
+
+          <div class="tap-signup">
+            Need an account?<a class="a-login" routerLink="/register"> Sign up now!</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>

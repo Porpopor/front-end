@@ -10,8 +10,8 @@ small{
 }
 
 .login-form{
-    margin: auto;
-    width: 400px;
+    /* margin: auto;
+    width: 400px; */
     padding: 20px;
     border-radius: 2%;
     /* background-color: #359b5c; */
@@ -26,8 +26,16 @@ small{
     box-shadow: 0px 4px 50px 0 rgba(61, 61, 61, 0.2);
 }
 
+.texx{
+    text-align: center;
+}
+
 .marr{
     margin-top: 12rem;
+}
+
+.img-icon{
+    width: 60%;
 }
 
 .tap-signup{

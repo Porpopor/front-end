@@ -279,3 +279,11 @@ img:hover{
     }
     
 }
+
+@media (max-width:900px){
+
+    .btn-o{
+        width: 100%;
+    }
+
+}

@@ -6,8 +6,15 @@
     </div>
     <div class="col-xl-4 col-lg-6 col-md-8 col">
       <div class="login-form shadoww">
-        <div class="sss">
-          <h2 class="fw-bold text-uppercase texx">สมัครสมาชิก</h2>
+        <div class="tabb">
+          <a class="nav-link active aaa" [ngClass]="{'login-form-active':clickChangeRegister == false}"  aria-current="page" (click)="changeRegister2()">
+            <img style="width: 11%;margin-right: 8px;" src="assets\images\login\user.png" alt=""><span>หางาน</span></a>
+          <a class="nav-link aaa" [ngClass]="{'login-form-active':clickChangeRegister == true}" (click)="changeRegister()">
+            <img style="width: 11%;margin-right: 8px;" src="assets\images\login\company.png"
+              alt=""><span>หาพนักงาน</span></a>
+        </div>
+        <div class="sss" [ngClass]="{'test':click == true}">
+          <h2 class="fw-bold text-uppercase texx">สมัครสมาชิก User</h2>
           <br>
           <form [formGroup]="registerForm">
             <div class="row">
@@ -42,13 +49,47 @@
 
             </div>
             <div class="form-outline form-white mb-4">
-              <input formControlName="phoneForm" type="text" (keyup.enter)="sendit($event)" id="typePasswordX"
+              <input formControlName="phoneForm" type="text" (keyup.enter)="sendit($event)" id="typePhoneX"
                 class="form-control form-control-lg" placeholder="เบอร์โทรศัพท์" />
             </div>
-            <button (click)="onLogin()" class="btn btn-web" style="width: 100%;" type="submit"
-              [disabled]="registerForm.invalid">Sign Up</button>
+            <button [disabled]="registerForm.invalid" (click)="onRegister()" class="btn btn-web" style="width: 100%;" type="submit">Sign up<i
+                class="fa fa-arrow-right" style="margin-left: 1rem;" aria-hidden="true"></i></button>
           </form>
         </div>
+
+
+        <div class="sss" [ngClass]="{'test':click2 == false}">
+          <h2 class="fw-bold text-uppercase texx">สมัครสมาชิก Company</h2>
+          <br>
+          <form [formGroup]="registerCompanyForm">
+              <div class="form-outline form-white mb-4 col">
+                <input formControlName="companyName" type="text" (keyup.enter)="sendit($event)" id="typeCompanyNameX"
+                  class="form-control form-control-lg" placeholder="ชื่อบริษัท" />
+                <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+              </div>
+
+            <div class="form-outline form-white mb-4">
+              <input formControlName="email" type="email" (keyup.enter)="sendit($event)" id="typeEmail2X"
+                class="form-control form-control-lg" placeholder="Email" />
+              <!-- <small *ngIf="email && email.invalid && email.touched">กรุณากรอก Email</small> -->
+            </div>
+            <div class="form-outline form-white mb-4">
+              <input formControlName="passWord" type="password" (keyup.enter)="sendit($event)" id="typePassword2X"
+                class="form-control form-control-lg" placeholder="รหัสผ่าน" />
+            </div>
+            <div class="form-outline form-white mb-4">
+              <input formControlName="type" type="text" (keyup.enter)="sendit($event)" id="typetypeX"
+                class="form-control form-control-lg" placeholder="ประเภทธุรกิจบริษัท" />
+            </div>
+            <div class="form-outline form-white mb-4">
+              <input formControlName="phone" type="text" (keyup.enter)="sendit($event)" id="typePhone2X"
+                class="form-control form-control-lg" placeholder="เบอร์โทรศัพท์" />
+            </div>
+            <button [disabled]="registerCompanyForm.invalid" (click)="onRegister2()" class="btn btn-web" style="width: 100%;" type="submit">Sign up<i
+                class="fa fa-arrow-right" style="margin-left: 1rem;" aria-hidden="true"></i></button>
+          </form>
+        </div>
+
       </div>
     </div>
   </div>

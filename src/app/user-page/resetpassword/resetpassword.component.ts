@@ -34,7 +34,7 @@ export class ResetpasswordComponent implements OnInit {
   }
 
   onClick() {
-    this.httpClient.post(`${environment.API_URL}/user/reset-password`, { newPassWord: this.resetPassword, confirmPassWord: this.confirmPassword }, {
+    this.httpClient.put(`${environment.API_URL}/user/reset-password`, { newPassWord: this.resetPassword, confirmPassWord: this.confirmPassword }, {
       headers: { Authorization: `Bearer ${this.id}` }
     })
       .subscribe((res: any) => {

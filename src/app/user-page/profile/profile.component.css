@@ -11,6 +11,19 @@ input,h2,label{
     /* margin-top: 8rem; */
 }
 
+.btn-webb{
+    width: 50% !important;
+    color:#ffffff;
+    background-color: #2e6edf;
+}
+
+.btn-webb:hover{
+    color: #ffffff;
+    background-color: #2655a8;
+    /* border: 2px solid #444444; */
+
+}
+
 .verify{
     text-decoration: none;
     background-color: #ffc107;
@@ -80,10 +93,15 @@ input,h2,label{
     background-color: white;
 }
 
+.div-image{
+    /* margin-top: 2rem; */
+    text-align: center;
+}
+
 .img-profile{
-    float:left;
-    width:300px;
-    height:100%;
+    /* float:left; */
+    width:60%;
+    /* height:100%; */
     /* width: 200px; */
     max-height: 200px;
     /* object-fit: scale-down; */
@@ -91,25 +109,30 @@ input,h2,label{
     
 }
 
-@media(max-width: 600px){
+@media(max-width: 900px){
     .col-sm-12{
     padding: 10px;
     }
     .img-profile{
-        width: 250px;
+        width: 100%;
         margin: auto;
     }
 
     .topp{
-        margin-top: 0rem;
+        margin-top: 8rem;
     }
 
-    .img-icon{
+    /* .img-icon{
+        display: none;
         margin-top: 5rem;
         width: 80%;
         position: relative;
-        /* z-index: 1; */
+        z-index: 1;
         left: 5px;
         bottom: 0px;
+    } */
+    
+    .hide{
+        display: none;
     }
 }

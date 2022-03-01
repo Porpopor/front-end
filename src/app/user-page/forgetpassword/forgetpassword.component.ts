@@ -20,7 +20,7 @@ export class ForgetpasswordComponent implements OnInit {
   }
 
   onClick(){
-    this.httpClient.post(`${environment.API_URL}/sentEmail/forget-password`, {email:this.email})
+    this.httpClient.post(`${environment.API_URL}/user/userForget-password`, {email:this.email})
     .subscribe((res:any)=> {
       console.log(res);
     })

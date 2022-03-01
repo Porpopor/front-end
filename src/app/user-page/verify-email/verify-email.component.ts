@@ -43,7 +43,7 @@ export class VerifyEmailComponent implements OnInit {
   }
 
   verifyEmail() {
-    this.httpClient.post(`${environment.API_URL}/user/verify-email`, {}, {
+    this.httpClient.put(`${environment.API_URL}/user/verify-email`, {}, {
       headers: { Authorization: `Bearer ${this.id}` }
     })
       .subscribe((res: any) => {

@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { environment } from 'src/environments/environment';
@@ -15,10 +16,16 @@ export class ProfileComponent implements OnInit {
   firstname = "";
   lastname = "";
   phone = "";
-  companyName = "";
-  picture = "";
+  sex = "";
+  picture: any;
   pathPicture = "http://localhost:8080/uploads/image/UserProfile/";
-  sentEmail ="";
+  sentEmail = "";
+  file: any ="";
+
+  ttt: any = "";
+  imm: any;
+
+  // phoneForm = new FormControl('', [Validators.required,Validators.pattern('[- +()0-9]+')])
 
   verify: boolean = false;
   click: boolean = false;
@@ -39,34 +46,78 @@ export class ProfileComponent implements OnInit {
     return this.cookie.hasKey('token');
   }
 
+  changeImg(event: any) {
+    this.ttt = <File>event.target.files[0];
+    const imgRegister = new FileReader();
+    imgRegister.readAsDataURL(this.ttt);
+    imgRegister.onload = () => {
+      this.picture = imgRegister.result
+    }
+  }
+
   getProfile() {
     this.httpClient.get(`${environment.API_URL}/user/profile`, {
       headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
     })
       .subscribe((res: any) => {
-        console.log(res)
+        // console.log(res)
         this.email = res.data.data.email;
         this.firstname = res.data.data.firstName;
         this.lastname = res.data.data.lastName;
+        this.sex = res.data.data.sex;
         this.phone = res.data.data.phone;
-        this.picture = this.pathPicture + res.data.data.picture;
-        if(res.data.data.verifyEmail == 1){
-        this.verify = true;
+        this.picture = res.data.data.picture;
+        if(this.picture == null){
+          this.picture = "assets/images/login/user.png";
+        }
+        if (res.data.data.verifyEmail == 1) {
+          this.verify = true;
         }
         // console.log(this.picture)
       })
   }
 
-  onClick() {
-    this.sentEmail = "SentEmail Success.";
-    this.click = true;
-    this.httpClient.post(`${environment.API_URL}/sentEmail/verify-email`, { email: this.email }, {
+  onSubmit() {
+    
+    this.httpClient.put(`${environment.API_URL}/user/editUser`, {
+      firstName: this.firstname,
+      lastName: this.lastname,
+      sex: this.sex,
+      phone: this.phone
+    }, {
       headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
     })
-    .subscribe((res:any)=>{
-      console.log(res);
-      console.log(this.sentEmail);
+      .subscribe((res: any) => {
+        console.log(res);
+        if(!this.ttt){
+          console.log(this.ttt)
+        }else{
+          this.uploadimg();
+        }
+      })
+  }
+
+  onClick() {
+    this.sentEmail = "SentEmail";
+    this.click = true;
+    this.httpClient.get(`${environment.API_URL}/user/sentVerify-email`, {
+      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
     })
+      .subscribe((res: any) => {
+        console.log(res);
+        console.log(this.sentEmail);
+      })
+  }
+
+  uploadimg() {
+    const fileData = new FormData();
+    fileData.append('fileName', this.ttt ,this.ttt.name);
+    this.httpClient.post(`${environment.API_URL}/file/image/user-profile`,fileData, {
+      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    })
+      .subscribe((res: any) => {
+        console.log(res);
+      })
   }
 
 }

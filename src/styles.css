@@ -17,6 +17,57 @@
 
 }
 
+.btn-web2{
+    color:#000000;
+    padding: 10px 20px;
+    background-color: #74747457;
+    /* border: 1px solid #345B63; */
+}
+
+.btn-web2:hover{
+    color: #ffffff;
+    background-color: #2655a8;
+    /* border: 2px solid #444444; */
+
+} 
+
+.btn-web3{
+    color:#ffffff;
+    padding: 10px 20px;
+    background-color: #dc3545;
+    /* border: 1px solid #345B63; */
+}
+
+.btn-web3:hover{
+    color: #ffffff;
+    background-color: #a02733;
+    /* border: 2px solid #444444; */
+
+}
+
+.btn1 {
+    background-color: #f8f9fa;
+    color: #000000;
+    /* border: 2px solid #000000; */
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin-left: 10px;
+    position: relative;
+    outline: none;
+    z-index: 1;
+}
+
+.btn1:hover {
+    color: #000000;
+    cursor: pointer;
+    background-color: #74747457;
+    /* border: 1px solid #8d8d8d; */
+    opacity: 0.9;
+}
+
 .form-control-lg{
     font-size: 1.1rem;
 }

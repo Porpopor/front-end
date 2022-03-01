@@ -58,7 +58,7 @@ export class HeaderComponent implements OnInit {
       headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
     })
       .subscribe((res: any) => {
-        this.picture = this.pathPicture + res.data.data.picture;
+        this.picture = res.data.data.picture;
         this.verifyEmail = res.data.data.verifyEmail;
         this.email = res.data.data.email;
         if (res.data.data.verifyEmail == 0) {

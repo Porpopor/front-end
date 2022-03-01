@@ -13,6 +13,46 @@ label{
     cursor: pointer;
 }
 
+.login-form-active{
+    color: #2e6edf;
+    /* box-shadow: 0px 4px 10px 0 rgba(61, 61, 61, 0.2); */
+    background-color: #fff;
+    border-left: 3px solid #2e6edf;
+    border-radius: 3%;
+    transition: all .2s cubic-bezier(.4,0,.2,1);
+}
+.sss{
+    margin-top: 1rem;
+}
+
+.tabb{
+    overflow: hidden;
+    display: flex;
+    width: 100%;
+}
+
+.aaa{
+    cursor: pointer;
+    color: black;
+    /* border-radius: 5%; */
+    width: 100%;
+    transition: all .2s cubic-bezier(.4,0,.2,1);
+}
+
+.aaa:hover{
+    background-color: #74747457;
+    color: #fff;
+    border-left: 3px solid #2e6edf;
+    border-right: 3px solid #2e6edf;
+    border-radius: 3%;
+    transition: all .2s cubic-bezier(.4,0,.2,1);
+}
+
+
+.test{
+    display: none;
+}
+
 .form-control.ng-touched.ng-invalid{
     border: 1px solid red;
 }

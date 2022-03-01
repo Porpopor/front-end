@@ -1,35 +1,61 @@
 <app-header></app-header>
 <div class="container">
     <div class="row topp">
-        <div class="col-4">
+        <div class="col-4 hide">
             <img class="img-icon" src="assets/images/profile/icon.png" alt="">
         </div>
-        <div class="profile shadoww col post-top">
+        <div class="col-md-8 col-sm-12 profile shadoww col post-top">
             <header style="margin-bottom: 2rem;">
                 <h2 style="font-size: 3.5rem;">โปรไฟล์</h2>
             </header>
-            <div class="row">
+            <div class="row form-control-lg">
                 <div class="col-lg-6 col-md-12 col-sm-12">
-                    <div><label for="email" class="form-label">Email :</label>
-                        <button [disabled]="click" *ngIf="!verify" (click)="onClick()" class="verify">Sent Verify</button>
-                        <button *ngIf="verify" class="verified">Verified</button>
-                        <span class="sent-email">{{sentEmail}}</span></div>
-                    <input class="form-control mar-bottom" type="text" id="email" [(ngModel)]="email">
-                    <label for="firstname" class="form-label">ชื่อ</label>
-                    <input class="form-control mar-bottom" type="text" id="firstname" [(ngModel)]="firstname">
-                    <label for="lastname" class="form-label">นามสกุล</label>
-                    <input class="form-control mar-bottom" type="text" id="lastname" [(ngModel)]="lastname">
-                    <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
-                    <input class="form-control mar-bottom" type="text" id="phone" [(ngModel)]="phone">
-                </div>
-                <div class="col-lg-6 col-md-12 col-sm-12 profile-left">
                     <div class="row">
-                        <div class="div-image">
-                            <img class="img-profile" src="{{picture}}" alt="" style="margin-bottom: 1rem;">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col">
+                                    <label for="email" class="form-label">Email :</label>
+                                    <span class="sent-email">{{sentEmail}}</span>
+                                </div>
+                                <div class="col" style="text-align: end;">
+                                    <button [disabled]="click" *ngIf="!verify" (click)="onClick()" class="verify">Sent
+                                        Verify</button>
+                                    <button *ngIf="verify" class="verified">Verified</button>
+                                </div>
+                            </div>
+                            <input class="form-control mar-bottom" type="text" id="email" [(ngModel)]="email">
+                            <div style="text-align: end;">
+                                <button class="btn btn-webb form-control-lg" style="width: 100%;"
+                                    type="submit">บันทึกและส่งยืนยัน</button>
+                            </div>
                         </div>
-                        <div class="col" style="width: 50%;margin-top: 1.3rem;">
-                            <label for="formFile" class="form-label">อัพโหลดรูปภาพ </label>
-                            <input class="form-control" type="file" id="formFile">
+                        <div class="col-12">
+                            <label for="firstname" class="form-label">ชื่อ</label>
+                            <input class="form-control mar-bottom" type="text" id="firstname" [(ngModel)]="firstname">
+                            <label for="lastname" class="form-label">นามสกุล</label>
+                            <input class="form-control mar-bottom" type="text" id="lastname" [(ngModel)]="lastname">
+                            <label for="phone" class="form-label">เบอร์โทรศัพท์</label>
+                            <input class="form-control mar-bottom" type="text" id="phone" [(ngModel)]="phone">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12">
+                    <div class="div-image">
+                        <img class="img-profile" [src]='picture' alt="" style="margin-bottom: 1rem;">
+                    </div>
+                    <div class="col">
+                        <label for="formFile" class="form-label">อัพโหลดรูปภาพ </label>
+                        <input class="form-control" type="file" id="formFile" accept="image/*" #inputfile
+                            (change)="changeImg($event)">
+                    </div>
+                    <div class="row" style="margin-top: 1.5rem;">
+                        <div class="col-6">
+                            <button class="btn btn-web form-control-lg" style="width: 100%;"
+                                type="submit" (click)="onSubmit()">บันทึก</button>
+                        </div>
+                        <div class="col-6">
+                            <button class="btn btn-web3 form-control-lg" style="width: 100%;"
+                                type="submit" (click)="getProfile()">ยกเลิก</button>
                         </div>
                     </div>
                 </div>

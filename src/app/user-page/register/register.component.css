@@ -9,6 +9,14 @@ small{
     color: red;
 }
 
+label{
+    cursor: pointer;
+}
+
+.form-control.ng-touched.ng-invalid{
+    border: 1px solid red;
+}
+
 .login-form{
     /* margin: auto;
     width: 400px; */
@@ -31,7 +39,8 @@ small{
 }
 
 .marr{
-    margin-top: 12rem;
+    padding-left: calc(var(--bs-gutter-x) * .5);
+    padding-right: calc(var(--bs-gutter-x) * .5);
 }
 
 .img-icon{
@@ -95,6 +104,10 @@ label{
     width: 100%;
     margin: auto;
     padding: 20px;
+    }
+
+    .img-icon{
+        display: none;
     }
     
 }

@@ -17,6 +17,10 @@
 
 }
 
+.form-control-lg{
+    font-size: 1.1rem;
+}
+
 * {   font-family: 'Kanit', sans-serif; }
 
 @media (max-width:600px){

@@ -9,31 +9,45 @@
         <div class="sss">
           <h2 class="fw-bold text-uppercase texx">สมัครสมาชิก</h2>
           <br>
+          <form [formGroup]="registerForm">
+            <div class="row">
+              <div class="form-outline form-white mb-4 col">
+                <input formControlName="firstnameForm" type="text" (keyup.enter)="sendit($event)" id="typeFirstnameX"
+                  class="form-control form-control-lg" placeholder="ชื่อ" />
+                <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+              </div>
+              <div class="form-outline form-white mb-4 col">
+                <input formControlName="lastnameForm" type="text" (keyup.enter)="sendit($event)" id="typeLastnameX"
+                  class="form-control form-control-lg" placeholder="นามสกุล" />
+              </div>
+            </div>
 
-          <div class="form-outline form-white mb-4">
-            <label for="typeEmailX">Email</label>
-            <input [formControl]="emailForm" [(ngModel)]="email" type="email" (keyup.enter)="sendit($event)"
-              id="typeEmailX" class="form-control form-control-lg" />
-            <small *ngIf="emailForm.invalid && emailForm.touched">กรุณากรอก Email</small>
-          </div>
-          <div class="form-outline form-white mb-4">
-            <label for="typePasswordX">Password</label>
-            <input [(ngModel)]="passWord" type="password" (keyup.enter)="sendit($event)" id="typePasswordX"
-              class="form-control form-control-lg" />
-          </div>
-          <div class="form-outline form-white mb-4">
-            <label for="typeFirstnameX">Firstname</label>
-            <input [(ngModel)]="firstName" type="text" (keyup.enter)="sendit($event)" id="typeFirstnameX"
-              class="form-control form-control-lg" />
-            <small *ngIf="firstnameForm.invalid && firstnameForm.touched">กรุณากรอก Email</small>
-          </div>
-          <div class="form-outline form-white mb-4">
-            <label for="typeLastnameX">Lastname</label>
-            <input [(ngModel)]="lastName" type="text" (keyup.enter)="sendit($event)" id="typeLastnameX"
-              class="form-control form-control-lg" />
-          </div>
-          
-          <button class="btn btn-web" style="width: 100%;" type="submit" [disabled]="emailForm.invalid">Sign Up</button>
+            <div class="form-outline form-white mb-4">
+              <input formControlName="emailForm" type="email" (keyup.enter)="sendit($event)" id="typeEmailX"
+                class="form-control form-control-lg" placeholder="Email" />
+              <!-- <small *ngIf="email && email.invalid && email.touched">กรุณากรอก Email</small> -->
+            </div>
+            <div class="form-outline form-white mb-4">
+              <input formControlName="passwordForm" type="password" (keyup.enter)="sendit($event)" id="typePasswordX"
+                class="form-control form-control-lg" placeholder="รหัสผ่าน" />
+            </div>
+            <div class="row marr">
+              <label style="padding-left: 0;padding-right: 0;" for="">เพศ</label>
+              <label class="form-control form-outline mb-4 col form-control-lg" for="sex_1">
+                <input style="margin-right: 1rem;" formControlName="sexForm" type="radio" value="ชาย" id="sex_1">ชาย
+              </label>
+              <label class="form-control form-outline mb-4 col form-control-lg" for="sex_2">
+                <input style="margin-right: 1rem;" formControlName="sexForm" type="radio" value="หญิง" id="sex_2">หญิง
+              </label>
+
+            </div>
+            <div class="form-outline form-white mb-4">
+              <input formControlName="phoneForm" type="text" (keyup.enter)="sendit($event)" id="typePasswordX"
+                class="form-control form-control-lg" placeholder="เบอร์โทรศัพท์" />
+            </div>
+            <button (click)="onLogin()" class="btn btn-web" style="width: 100%;" type="submit"
+              [disabled]="registerForm.invalid">Sign Up</button>
+          </form>
         </div>
       </div>
     </div>

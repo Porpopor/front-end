@@ -25,7 +25,7 @@
                             </div>
                             <input class="form-control mar-bottom" type="text" id="email" [(ngModel)]="email">
                             <div style="text-align: end;">
-                                <button class="btn btn-webb form-control-lg" style="width: 100%;"
+                                <button (click)="onChangeEmail()" class="btn btn-webb form-control-lg" style="width: 100%;"
                                     type="submit">บันทึกและส่งยืนยัน</button>
                             </div>
                         </div>

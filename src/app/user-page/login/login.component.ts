@@ -14,6 +14,10 @@ export class LoginComponent implements OnInit {
 
   email = ""
   passWord = ""
+  email2 = ""
+  passWord2 = ""
+
+  role = ""
 
   id = "";
 
@@ -31,6 +35,7 @@ export class LoginComponent implements OnInit {
       this.id = params['id'];
       console.log(this.id);
     })
+    console.log(this.role)
     if(this.id == "company"){
       this.onChangeLogin2();
     }
@@ -59,9 +64,44 @@ export class LoginComponent implements OnInit {
 
         })
         this.cookie.put('token', res.data.token)
-        this.router.navigate(["/home"])
+        this.checkRole();
+        // this.router.navigate(["/home"])
       }, (error: any) => {
         if (error.error.message == "Login.fail")
+          Swal.fire({
+            icon: 'error',
+            title: 'รหัสผ่านไม่ถูกต้อง',
+            confirmButtonText: 'ตกลง',
+            confirmButtonColor: '#2e6edf'
+          })
+      })
+  }
+
+  onLogin2() {
+    this.httpClient.post(`${environment.API_URL}/company/login`, { email: this.email2, passWord: this.passWord2 })
+      .subscribe((res: any) => {
+        console.log(res)
+        const Toast = Swal.mixin({
+          toast: true,
+          position: 'top-end',
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+          }
+        })
+
+        Toast.fire({
+          icon: 'success',
+          title: 'เข้าสู่ระบบสำเร็จ',
+          width: 250
+
+        })
+        this.cookie.put('token', res.data.token)
+        this.router.navigate(["/company/dashboard"])
+      }, (error: any) => {
           Swal.fire({
             icon: 'error',
             title: 'รหัสผ่านไม่ถูกต้อง',
@@ -85,6 +125,22 @@ export class LoginComponent implements OnInit {
     this.changeLogin = false;
     this.changeLogin2 = true;
     console.log(this.changeLogin);
+  }
+
+  checkRole() {
+    this.httpClient.get(`${environment.API_URL}/user/check-role`,{
+      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    })
+      .subscribe((res: any) => {
+        // console.log(res);
+        this.role = res.data.role;
+        console.log(this.role)
+        if(this.role == "USER"){
+          this.router.navigate(['/home'])
+        }else if(this.role == "ADMIN"){
+          this.router.navigate(['/profile'])
+        }
+      })
   }
 
 }

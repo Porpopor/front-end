@@ -17,6 +17,11 @@ import { ResetpasswordComponent } from './user-page/resetpassword/resetpassword.
 import { VerifyEmailComponent } from './user-page/verify-email/verify-email.component';
 import { FindJobComponent } from './user-page/find-job/find-job.component';
 import { FooterComponent } from './navbar/footer/footer.component';
+import { CompanyHomeComponent } from './company-page/company-home/company-home.component';
+import { SidebarComponent } from './company-page/sidebar/sidebar.component';
+import { CompanyNavbarComponent } from './company-page/company-navbar/company-navbar.component';
+import { CompanyWorkComponent } from './company-page/company-work/company-work.component';
+import { CompanyDashboardComponent } from './company-page/company-dashboard/company-dashboard.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +35,12 @@ import { FooterComponent } from './navbar/footer/footer.component';
     ResetpasswordComponent,
     VerifyEmailComponent,
     FindJobComponent,
-    FooterComponent
+    FooterComponent,
+    CompanyHomeComponent,
+    SidebarComponent,
+    CompanyNavbarComponent,
+    CompanyWorkComponent,
+    CompanyDashboardComponent
   ],
   imports: [
     BrowserModule,

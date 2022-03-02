@@ -120,4 +120,16 @@ export class ProfileComponent implements OnInit {
       })
   }
 
+  onChangeEmail() {
+    
+    this.httpClient.put(`${environment.API_URL}/user/change-email`, {
+      email: this.email,
+    }, {
+      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    })
+      .subscribe((res: any) => {
+        console.log(res);
+      })
+  }
+
 }

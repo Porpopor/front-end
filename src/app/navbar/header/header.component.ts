@@ -22,6 +22,15 @@ export class HeaderComponent implements OnInit {
     private cookie: CookieService) { }
   login: boolean = false;
   verify: boolean = true;
+  loginComp :boolean = false;
+  ngOnInit(): void {
+    if (this.checkLogin()) {
+      this.login = true;
+      this.getProfile();
+    } else {
+      this.login = false;
+    }
+  }
 
   @HostBinding('class.header_change') newNav:boolean = false;
 
@@ -32,15 +41,6 @@ export class HeaderComponent implements OnInit {
       this.newNav = true;
     }else{
       this.newNav = false;
-    }
-  }
-  ngOnInit(): void {
-    // console.log(window.scrollY);
-    if (this.checkLogin()) {
-      this.login = true;
-      this.getProfile();
-    } else {
-      this.login = false;
     }
   }
 

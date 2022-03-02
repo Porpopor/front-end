@@ -17,6 +17,8 @@ export class HomeComponent implements OnInit {
   name_text = "";
   id: string | undefined;
 
+  role = "";
+
   companyWorkList = [];
   provinceData = [];
 
@@ -31,12 +33,33 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.getData();
     this.getprovince();
+    // if (!this.checkLogin()) {
+    //   this.router.navigate(['/login']);
+    // }else{
+    //   this.checkRole()
+    // }
+    
+  }
+
+  checkLogin() {
+    return this.cookie.hasKey('token');
+  }
+
+  checkRole() {
+    this.httpClient.get(`${environment.API_URL}/user/check-role`,{
+      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    })
+      .subscribe((res: any) => {
+        // console.log(res);
+        this.role = res.data.role;
+        console.log(this.role)
+      })
   }
 
   getData() {
     this.httpClient.post(`${environment.API_URL}/company-work/listAll`, {})
       .subscribe((res: any) => {
-        console.log(res)
+        // console.log(res)
         this.companyWorkList = res.data.companyWork;
       })
   }
@@ -60,10 +83,11 @@ export class HomeComponent implements OnInit {
   getClick(id: any) {
     this.httpClient.post(`${environment.API_URL}/company-work/view-byid`, { id })
       .subscribe((res: any) => {
-        console.log(res);
+        // console.log(res);
         this.router.navigate([`/view/${id}`],{ relativeTo: this.activateRoute });
       })
   }
+
 
 
 }

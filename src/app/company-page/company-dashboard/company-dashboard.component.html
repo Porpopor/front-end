@@ -1,0 +1,17 @@
+<h1>DashBoard</h1>
+<table>
+    <tr style="text-align: center;">
+        <th style="width: 100px;">ลำดับ</th>
+        <th style="width: 300px;">ชื่อ</th>
+        <th style="width: 300px;">จังหวัด</th>
+        <th style="width: 300px;">อำเภอ</th>
+        <th style="width: 300px;">#</th>
+    </tr>
+    <tr class="show" *ngFor="let data of companyWork;let i = index">
+        <td>{{i+1}}</td>
+        <td>{{data.companyName}}</td>
+        <td>{{data.province}}</td>
+        <td>{{data.district}}</td>
+        <td>Germany</td>
+    </tr>
+</table>

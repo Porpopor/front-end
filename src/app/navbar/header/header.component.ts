@@ -23,7 +23,15 @@ export class HeaderComponent implements OnInit {
   login: boolean = false;
   verify: boolean = true;
   loginComp :boolean = false;
+  role:boolean = false;
   ngOnInit(): void {
+    if(this.CheckRole()){
+      this.role = true;
+    }
+    else{
+      this.role = false;
+    }
+    console.log(this.role)
     if (this.checkLogin()) {
       this.login = true;
       this.getProfile();
@@ -44,9 +52,20 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  CheckRole(){
+    let role = localStorage.getItem('role');
+    console.log(role)
+    if (role == "COMPANY") {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   logout(): void {
     this.cookie.remove('token');
     this.router.navigate(['/login']);
+    localStorage.removeItem('role');
   }
 
   checkLogin() {

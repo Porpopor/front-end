@@ -52,7 +52,7 @@ export class HomeComponent implements OnInit {
       .subscribe((res: any) => {
         // console.log(res);
         this.role = res.data.role;
-        console.log(this.role)
+        // console.log(this.role)
       })
   }
 

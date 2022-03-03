@@ -26,6 +26,7 @@ export class CompanyNavbarComponent implements OnInit {
   logout(): void {
     this.cookie.remove('token');
     this.router.navigate(['/login']);
+    localStorage.removeItem('role');
   }
 
   checkLogin() {

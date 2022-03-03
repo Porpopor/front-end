@@ -35,10 +35,6 @@ export class LoginComponent implements OnInit {
       this.id = params['id'];
       console.log(this.id);
     })
-    console.log(this.role)
-    if(this.id == "company"){
-      this.onChangeLogin2();
-    }
   }
 
   onLogin() {
@@ -49,7 +45,7 @@ export class LoginComponent implements OnInit {
           toast: true,
           position: 'top-end',
           showConfirmButton: false,
-          timer: 3000,
+          timer: 1000,
           timerProgressBar: true,
           didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -63,6 +59,7 @@ export class LoginComponent implements OnInit {
           width: 250
 
         })
+        localStorage.setItem('role', res.profile.role);
         this.cookie.put('token', res.data.token)
         this.checkRole();
         // this.router.navigate(["/home"])
@@ -85,7 +82,7 @@ export class LoginComponent implements OnInit {
           toast: true,
           position: 'top-end',
           showConfirmButton: false,
-          timer: 3000,
+          timer: 1000,
           timerProgressBar: true,
           didOpen: (toast) => {
             toast.addEventListener('mouseenter', Swal.stopTimer)
@@ -99,8 +96,9 @@ export class LoginComponent implements OnInit {
           width: 250
 
         })
+        localStorage.setItem('role', res.profile.role);
         this.cookie.put('token', res.data.token)
-        this.router.navigate(["/company/dashboard"])
+        this.router.navigate(["/company"])
       }, (error: any) => {
           Swal.fire({
             icon: 'error',

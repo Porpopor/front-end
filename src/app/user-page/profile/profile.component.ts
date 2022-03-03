@@ -2,8 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie';
+import { ApiService } from 'src/app/service/api/api.service';
 import { environment } from 'src/environments/environment';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-profile',
@@ -22,6 +25,11 @@ export class ProfileComponent implements OnInit {
   sentEmail = "";
   file: any ="";
 
+  helper = new JwtHelperService();
+  decodeToken:any;
+  token:any = localStorage.getItem('token');
+  TokenRefresh = localStorage.getItem('refreshToken');
+
   ttt: any = "";
   imm: any;
 
@@ -32,9 +40,11 @@ export class ProfileComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private cookie: CookieService,
-    private router: Router
+    private router: Router,
+    private api:ApiService
   ) { }
   ngOnInit(): void {
+   this.api.checkTokenRefresh();
     if (!this.checkLogin()) {
       this.router.navigate(['/login']);
     } else {
@@ -44,6 +54,7 @@ export class ProfileComponent implements OnInit {
 
   checkLogin() {
     return this.cookie.hasKey('token');
+    // return localStorage.getItem('token');
   }
 
   changeImg(event: any) {
@@ -57,7 +68,7 @@ export class ProfileComponent implements OnInit {
 
   getProfile() {
     this.httpClient.get(`${environment.API_URL}/user/profile`, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+      headers: { Authorization: `Bearer ${this.cookie.hasKey('token')}` }
     })
       .subscribe((res: any) => {
         // console.log(res)
@@ -79,57 +90,69 @@ export class ProfileComponent implements OnInit {
 
   onSubmit() {
     
-    this.httpClient.put(`${environment.API_URL}/user/editUser`, {
+    let data = {
       firstName: this.firstname,
       lastName: this.lastname,
       sex: this.sex,
       phone: this.phone
-    }, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    }
+    this.api.apiPut("/user/editUser", data).then((res:any) =>{
+      // console.log(res)
+      if(!this.ttt){
+        // console.log(this.ttt)
+      }else{
+        this.uploadimg();
+      }
     })
-      .subscribe((res: any) => {
-        console.log(res);
-        if(!this.ttt){
-          console.log(this.ttt)
-        }else{
-          this.uploadimg();
-        }
-      })
   }
 
   onClick() {
     this.sentEmail = "SentEmail";
     this.click = true;
-    this.httpClient.get(`${environment.API_URL}/user/sentVerify-email`, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    this.api.apiGet("/user/sentVerify-email").then((res:any) =>{
+      
     })
-      .subscribe((res: any) => {
-        console.log(res);
-        console.log(this.sentEmail);
-      })
   }
 
   uploadimg() {
     const fileData = new FormData();
     fileData.append('fileName', this.ttt ,this.ttt.name);
-    this.httpClient.post(`${environment.API_URL}/file/image/user-profile`,fileData, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    this.api.apiPost("/file/image/user-profile", fileData).then((res:any) =>{
+      // console.log(res);
     })
-      .subscribe((res: any) => {
-        console.log(res);
-      })
   }
 
   onChangeEmail() {
-    
-    this.httpClient.put(`${environment.API_URL}/user/change-email`, {
-      email: this.email,
-    }, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
-    })
-      .subscribe((res: any) => {
-        console.log(res);
+    let data:any ={
+      email : this.email
+    }
+
+    this.api.apiPut("/user/change-email",data).then((res:any) =>{
+      Swal.fire({
+        icon: 'success',
+        title: 'ส่ง ยืนยัน แล้ว',
+        confirmButtonText: 'ตกลง',
+        confirmButtonColor: '#2e6edf'
       })
+    },(error:any) =>{
+      if(error.error.status == 417){
+        Swal.fire({
+          icon: 'error',
+          title: 'Email นี้ ยืนยันแล้ว',
+          confirmButtonText: 'ตกลง',
+          confirmButtonColor: '#2e6edf'
+        })
+      }
+    })
+    
+    // this.httpClient.put(`${environment.API_URL}/user/change-email`, {
+    //   email: this.email,
+    // }, {
+    //   headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    // })
+    //   .subscribe((res: any) => {
+    //     console.log(res);
+    //   })
   }
 
 }

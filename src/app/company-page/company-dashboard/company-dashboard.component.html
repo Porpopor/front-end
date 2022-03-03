@@ -2,7 +2,7 @@
 <table>
     <tr style="text-align: center;">
         <th style="width: 100px;">ลำดับ</th>
-        <th style="width: 300px;">ชื่อ</th>
+        <th style="width: 500px;">ชื่อ</th>
         <th style="width: 300px;">จังหวัด</th>
         <th style="width: 300px;">อำเภอ</th>
         <th style="width: 300px;">#</th>
@@ -12,10 +12,14 @@
         <td>{{data.companyName}}</td>
         <td>{{data.province}}</td>
         <td>{{data.district}}</td>
+<<<<<<< HEAD
         <td>
             <button type="button" class="btn btn-primary" style="margin-right: 0.7rem;width: 60px;">ดู</button>
-            <button type="button" class="btn btn-warning" style="margin-right: 0.7rem;width: 60px;">แก้ไข</button>
+            <button (click)="onEdit(data.id)" type="button" class="btn btn-warning" style="margin-right: 0.7rem;width: 60px;">แก้ไข</button>
             <button type="button" class="btn btn-danger" style="width: 60px;">ลบ</button>
         </td>
+=======
+        <td>Germany</td>
+>>>>>>> parent of 454a37d (edit)
     </tr>
 </table>

@@ -1,4 +1,4 @@
-<header *ngIf="!role">
+<header>
 <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-nav" [class.header_change]="newNav">
   <div class="container">
     <a class="navbar-brand ff" routerLink="/home">FindJob</a>
@@ -21,7 +21,8 @@
       <div *ngIf="!verify" style="text-align: center;">
         <button routerLink="/profile" class="a-login verify" style="font-size: 1.3rem;color:cornsilk ;">Email not verified</button>
       </div>
-      <div class="dropdown" *ngIf="login">
+      <div class="dropdown" *ngIf="!role && login">
+        <span>{{email}}</span>
         <a class="btn btn-o dropdown-toggle btn-outline" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
           aria-expanded="false">
           <img src="{{picture}}" alt="">
@@ -31,11 +32,26 @@
           <li><a class="dropdown-item aaa" (click)="logout()" *ngIf="login">ออกจากระบบ</a></li>
         </ul>
       </div>
+      <div class="dropdown" *ngIf="role && login">
+        <span>{{email}}</span>
+        <a class="btn btn-o dropdown-toggle btn-outline" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+          aria-expanded="false">
+          <img src="{{picture}}" alt="">
+        </a>
+        <ul class="dropdown-menu full-button" aria-labelledby="dropdownMenuButton1">
+          <li><a class="dropdown-item aaa" routerLink="/company">DashBoard</a></li>
+          <li><a class="dropdown-item aaa" (click)="logout()" *ngIf="login">ออกจากระบบ</a></li>
+        </ul>
+      </div>
     </div>
   </div>
 </nav>
 </header>
-<app-company-navbar *ngIf="role"></app-company-navbar>
+<<<<<<< HEAD
+<!-- <app-company-navbar *ngIf="role"></app-company-navbar> -->
+=======
+
+>>>>>>> parent of 454a37d (edit)
 
 
 

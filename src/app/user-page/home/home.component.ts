@@ -42,6 +42,10 @@ export class HomeComponent implements OnInit {
   }
 
   checkLogin() {
+<<<<<<< HEAD
+    return this.cookie.hasKey('token')
+    // return localStorage.getItem('token');
+=======
     return this.cookie.hasKey('token');
   }
 
@@ -52,8 +56,9 @@ export class HomeComponent implements OnInit {
       .subscribe((res: any) => {
         // console.log(res);
         this.role = res.data.role;
-        // console.log(this.role)
+        console.log(this.role)
       })
+>>>>>>> parent of 454a37d (edit)
   }
 
   getData() {

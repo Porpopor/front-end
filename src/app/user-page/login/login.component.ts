@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit, Output, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import { CookieService } from 'ngx-cookie';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
@@ -21,6 +22,10 @@ export class LoginComponent implements OnInit {
 
   id = "";
 
+  decodetoken:any
+
+  helper = new JwtHelperService();
+
   changeLogin: boolean = true;
   changeLogin2: boolean = false;
 
@@ -33,7 +38,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
-      console.log(this.id);
+      // console.log(this.id);
     })
   }
 
@@ -60,9 +65,9 @@ export class LoginComponent implements OnInit {
 
         })
         localStorage.setItem('role', res.profile.role);
-        this.cookie.put('token', res.data.token)
-        this.checkRole();
-        // this.router.navigate(["/home"])
+        localStorage.setItem('token',res.data.token);
+        this.cookie.put('token', res.data.token);
+        this.router.navigate(["/home"])
       }, (error: any) => {
         if (error.error.message == "Login.fail")
           Swal.fire({
@@ -97,7 +102,12 @@ export class LoginComponent implements OnInit {
 
         })
         localStorage.setItem('role', res.profile.role);
+        localStorage.setItem('token', res.data.token);
         this.cookie.put('token', res.data.token)
+
+        this.decodetoken = this.helper.getTokenExpirationDate(res.data.token)
+        console.log(this.decodetoken);
+
         this.router.navigate(["/company"])
       }, (error: any) => {
           Swal.fire({
@@ -117,28 +127,12 @@ export class LoginComponent implements OnInit {
   onChangeLogin() {
     this.changeLogin = true;
     this.changeLogin2 = false;
-    console.log(this.changeLogin);
+    // console.log(this.changeLogin);
   }
   onChangeLogin2() {
     this.changeLogin = false;
     this.changeLogin2 = true;
-    console.log(this.changeLogin);
-  }
-
-  checkRole() {
-    this.httpClient.get(`${environment.API_URL}/user/check-role`,{
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
-    })
-      .subscribe((res: any) => {
-        // console.log(res);
-        this.role = res.data.role;
-        console.log(this.role)
-        if(this.role == "USER"){
-          this.router.navigate(['/home'])
-        }else if(this.role == "ADMIN"){
-          this.router.navigate(['/profile'])
-        }
-      })
+    // console.log(this.changeLogin);
   }
 
 }

@@ -22,6 +22,11 @@ import { SidebarComponent } from './company-page/sidebar/sidebar.component';
 import { CompanyNavbarComponent } from './company-page/company-navbar/company-navbar.component';
 import { CompanyWorkComponent } from './company-page/company-work/company-work.component';
 import { CompanyDashboardComponent } from './company-page/company-dashboard/company-dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatDialogModule} from '@angular/material/dialog';
+import { DashboardComponent } from './company-page/dialog/dashboard/dashboard.component';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -40,7 +45,8 @@ import { CompanyDashboardComponent } from './company-page/company-dashboard/comp
     SidebarComponent,
     CompanyNavbarComponent,
     CompanyWorkComponent,
-    CompanyDashboardComponent
+    CompanyDashboardComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -48,7 +54,12 @@ import { CompanyDashboardComponent } from './company-page/company-dashboard/comp
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    CookieModule.forRoot()
+    CookieModule.forRoot(),
+    BrowserAnimationsModule,
+    MatDialogModule
+  ],
+  entryComponents:[
+    DashboardComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

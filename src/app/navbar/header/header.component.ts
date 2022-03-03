@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, HostBinding, HostListener, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
+import { ApiService } from 'src/app/service/api/api.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -19,22 +20,26 @@ export class HeaderComponent implements OnInit {
   constructor(
     private httpClient: HttpClient,
     private router: Router,
-    private cookie: CookieService) { }
+    private cookie: CookieService,
+    private api: ApiService
+    ) { }
   login: boolean = false;
   verify: boolean = true;
   loginComp :boolean = false;
-  role:boolean = false;
   ngOnInit(): void {
+<<<<<<< HEAD
     if(this.CheckRole()){
       this.role = true;
+      this.getCompanyProfile();
     }
-    else{
+    else if(this.CheckRoleUser()){
+      this.getProfile();
       this.role = false;
     }
-    console.log(this.role)
+=======
+>>>>>>> parent of 454a37d (edit)
     if (this.checkLogin()) {
       this.login = true;
-      this.getProfile();
     } else {
       this.login = false;
     }
@@ -52,9 +57,47 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  logout(): void {
+    this.cookie.remove('token');
+    this.router.navigate(['/login']);
+<<<<<<< HEAD
+    // localStorage.removeItem('role');
+    // localStorage.removeItem('token');
+    localStorage.clear();
+    // window.location.reload();
+=======
+>>>>>>> parent of 454a37d (edit)
+  }
+
+  checkLogin() {
+
+    return this.cookie.hasKey('token');
+    // return localStorage.getItem('token');
+  }
+
+  getProfile() {
+    this.api.apiGet("/user/profile").then((res:any) =>{
+
+      this.picture = res.data.data.picture;
+        this.verifyEmail = res.data.data.verifyEmail;
+        this.email = res.data.data.email;
+        if (res.data.data.verifyEmail == 0) {
+          this.verify = false;
+        }
+    })
+  }
+
+  getCompanyProfile() {
+      this.api.apiGet("/company/profile").then((res: any) => {
+        // console.log(res);
+        this.picture = res.data.profile.picture;
+        this.email = res.data.profile.email;
+      })
+  }
+
   CheckRole(){
     let role = localStorage.getItem('role');
-    console.log(role)
+    // console.log(role)
     if (role == "COMPANY") {
       return true;
     } else {
@@ -62,27 +105,14 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  logout(): void {
-    this.cookie.remove('token');
-    this.router.navigate(['/login']);
-    localStorage.removeItem('role');
+  CheckRoleUser(){
+    let role = localStorage.getItem('role');
+    // console.log(role)
+    if (role == "USER") {
+      return true;
+    } else {
+      return false;
+    }
   }
 
-  checkLogin() {
-    return this.cookie.hasKey('token');
-  }
-
-  getProfile() {
-    this.httpClient.get(`${environment.API_URL}/user/profile`, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
-    })
-      .subscribe((res: any) => {
-        this.picture = res.data.data.picture;
-        this.verifyEmail = res.data.data.verifyEmail;
-        this.email = res.data.data.email;
-        if (res.data.data.verifyEmail == 0) {
-          this.verify = false;
-        }
-      })
-  }
 }

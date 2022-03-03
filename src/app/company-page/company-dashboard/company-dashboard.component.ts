@@ -1,8 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { environment } from 'src/environments/environment';
+import { DashboardComponent } from '../dialog/dashboard/dashboard.component';
 
 @Component({
   selector: 'app-company-dashboard',
@@ -18,7 +20,8 @@ export class CompanyDashboardComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
     private cookie: CookieService,
-    private router: Router
+    private router: Router,
+    private dialog:MatDialog
   ) { }
 
   ngOnInit(): void {
@@ -31,12 +34,16 @@ export class CompanyDashboardComponent implements OnInit {
 
   getCompanyWork() {
     this.httpClient.get(`${environment.API_URL}/company-work/list-byCompany`, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
     })
       .subscribe((res: any) => {
-        console.log(res);
+        // console.log(res);
         this.companyWork = res.data.list;
       })
+  }
+
+  onEdit(id:any){
+    this.dialog.open(DashboardComponent,{data: id})
   }
 
 }

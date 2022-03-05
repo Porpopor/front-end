@@ -1,1 +1,31 @@
-<p>company-work works!</p>
+<div class="form-outline form-white mb-4" *ngFor="let form of data">
+    <label for="typePasswordX">Add</label>
+    <input [(ngModel)]="form.name" type="text" id="typePassworssd2X" class="form-control form-control-lg" />
+</div>
+<button class="btn btn-web" [disabled]="check" style="width: 100%;" type="submit" (click)="onFormdata()">เพิ่ม</button>
+<div class="forget" style="margin: 2rem;text-align: center;">
+
+    <button class="btn btn-web" style="width: 100%;" type="submit" (click)="test()">ทดสอบ</button>
+
+    <div>
+        <table style="margin: auto;">
+            <tr style="text-align: center;">
+                <th style="width: 100px;">ลำดับ</th>
+                <th style="width: 500px;">ชื่อ</th>
+                <th style="width: 250px;">จังหวัด</th>
+                <th style="width: 250px;">อำเภอ</th>
+                <th style="width: 350px;">#</th>
+            </tr>
+            <tr class="show" *ngFor="let work of companyWork;let i = index">
+                <td>{{i+1}}</td>
+                <td>{{work.companyName}}</td>
+                <td>{{work.province}}</td>
+                <td>{{work.district}}</td>
+                <td>
+                    <button type="button" class="btn btn-primary" style="margin-right: 0.7rem;width: 60px;">ดู</button>
+                    <button (click)="onEdit(work.id)" type="button" class="btn btn-warning" style="margin-right: 0.7rem;width: 60px;">แก้ไข</button>
+                    <button type="button" class="btn btn-danger" style="width: 60px;">ลบ</button>
+                </td>
+            </tr>
+        </table>
+    </div>

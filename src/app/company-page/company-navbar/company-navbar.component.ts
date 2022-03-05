@@ -26,23 +26,31 @@ export class CompanyNavbarComponent implements OnInit {
   }
 
   logout(): void {
+    this.cookie.removeAll();
+    // location.replace('/login');
     this.router.navigate(['/login']);
-<<<<<<< HEAD
-    localStorage.removeItem('role');
-    localStorage.removeItem('token');
-    localStorage.removeItem('refreshToken');
-=======
->>>>>>> parent of 454a37d (edit)
+    // localStorage.removeItem('token');
+    // localStorage.removeItem('refreshToken');
   }
 
   checkLogin() {
-    return localStorage.getItem('token');
+    return this.cookie.hasKey('token');
   }
 
+  // getProfile() {
+  //   this.api.apiGet("/company/profile")
+  //     .then((res: any) => {
+  //       // console.log(res);
+  //       this.picture = res.data.profile.picture;
+  //       this.email = res.data.profile.email;
+  //     })
+  // }
+
   getProfile() {
-    this.api.apiGet("/company/profile")
-      .then((res: any) => {
-        // console.log(res);
+    this.httpClient.get(`${environment.API_URL}/company/profile`, {
+      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    })
+      .subscribe((res: any) => {
         this.picture = res.data.profile.picture;
         this.email = res.data.profile.email;
       })

@@ -12,6 +12,7 @@ export class ApiService {
   helper = new JwtHelperService();
   decodeToken: any;
   decodeRefreshToken: any;
+  role: any = localStorage.getItem('role');
   token: any = localStorage.getItem('token');
   TokenRefresh: any = localStorage.getItem('refreshToken');
   cookieToken: any;
@@ -23,6 +24,12 @@ export class ApiService {
   ) { }
 
   checkTokenRefresh() {
+    // if(this.checkRefreshToken() && this.checkToken() && this.role == "USER"){
+    //   localStorage.clear();
+    //   this.router.navigate(['/login'])
+    // }
+    console.log(this.checkToken())
+    // console.log(this.role)
     if (this.checkToken()) {
       console.log(this.checkToken())
       this.refreshToken(this.TokenRefresh);
@@ -30,7 +37,7 @@ export class ApiService {
   }
 
   checkToken(): boolean {
-    let token:any = this.cookie.get('token');
+    let token: any = this.token;
     this.decodeToken = this.helper.isTokenExpired(token)
     return this.decodeToken;
   }
@@ -45,7 +52,7 @@ export class ApiService {
       headers: { Authorization: `Bearer ${data}` }
     }).subscribe((res: any) => {
       console.log(res);
-      this.cookie.put('token',res.data.token)
+      this.cookie.put('token', res.data.token)
       localStorage.setItem('token', res.data.token);
       localStorage.setItem('refreshToken', res.data.refreshToken);
       // window.location.reload();
@@ -53,8 +60,19 @@ export class ApiService {
   }
 
   getCookie() {
-    return this.cookie.hasKey('token')
-    // return this.cookieToken = this.token;
+    // return this.cookie.hasKey('token')
+    return this.cookieToken = this.token;
+  }
+
+  async postLogin(url: any, data: any) {
+    let token = this.getCookie()
+
+    // let headers = {
+    //   headers: { Authorization: `Bearer ` + token }
+    // }
+    let result1 = await this.httpClient.post(`${environment.API_URL + url}`, data).toPromise()
+    // console.log(result1);
+    return result1;
   }
 
 
@@ -89,9 +107,20 @@ export class ApiService {
     })
   }
 
+   test(url: any) {
+    let headers = {
+      headers: { Authorization: `Bearer ` + this.token }
+    }
+
+    let test = this.httpClient.get(`${environment.API_URL + url}`, headers)
+      .toPromise().catch((res: any) => {
+        console.log(res)
+      })
+    return test;
+  }
+
   apiGet(url: any) {
     let token = this.getCookie()
-    this.checkTokenRefresh()
     let headers = {
       headers: { Authorization: `Bearer ` + token }
     }

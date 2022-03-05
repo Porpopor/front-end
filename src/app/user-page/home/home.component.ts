@@ -42,23 +42,7 @@ export class HomeComponent implements OnInit {
   }
 
   checkLogin() {
-<<<<<<< HEAD
-    return this.cookie.hasKey('token')
-    // return localStorage.getItem('token');
-=======
     return this.cookie.hasKey('token');
-  }
-
-  checkRole() {
-    this.httpClient.get(`${environment.API_URL}/user/check-role`,{
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
-    })
-      .subscribe((res: any) => {
-        // console.log(res);
-        this.role = res.data.role;
-        console.log(this.role)
-      })
->>>>>>> parent of 454a37d (edit)
   }
 
   getData() {

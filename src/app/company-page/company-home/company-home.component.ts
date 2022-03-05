@@ -16,13 +16,11 @@ export class CompanyHomeComponent implements OnInit {
   addWork: boolean = false;
   id: any;
 
-<<<<<<< HEAD
   helper = new JwtHelperService();
   decodeToken : any
   role="";
 
-=======
->>>>>>> parent of 454a37d (edit)
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
@@ -32,9 +30,9 @@ export class CompanyHomeComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.id = localStorage.getItem('token');
-    this.decodeToken = this.helper.isTokenExpired(this.id)
-    console.log(this.decodeToken)
+    // this.id = localStorage.getItem('token');
+    // this.decodeToken = this.helper.isTokenExpired(this.id)
+    // console.log(this.decodeToken)
 
   }
   clickdashboard() {
@@ -46,7 +44,6 @@ export class CompanyHomeComponent implements OnInit {
     this.dashboard = false;
     this.addWork = true;
   }
-<<<<<<< HEAD
   // checkRoleUser() {
   //   this.checkRoleCompany();
   //   this.httpClient.get(`${environment.API_URL}/user/check-role`, {
@@ -58,7 +55,7 @@ export class CompanyHomeComponent implements OnInit {
         
   //     })
   // }
-=======
->>>>>>> parent of 454a37d (edit)
+
+
 
 }

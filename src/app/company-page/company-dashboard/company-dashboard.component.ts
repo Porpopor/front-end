@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
+import { ApiService } from 'src/app/service/api/api.service';
 import { environment } from 'src/environments/environment';
 import { DashboardComponent } from '../dialog/dashboard/dashboard.component';
 
@@ -15,26 +16,40 @@ export class CompanyDashboardComponent implements OnInit {
 
   id: any;
 
-  companyWork: any =[];
+  companyWork: any = [];
   constructor(
     private activatedRoute: ActivatedRoute,
     private httpClient: HttpClient,
     private cookie: CookieService,
     private router: Router,
-    private dialog:MatDialog
+    private dialog: MatDialog,
+    private api: ApiService
   ) { }
 
   ngOnInit(): void {
+    // console.log("1")
+    //  await this.getTest()
     this.getCompanyWork()
+    // console.log("3")
+    console.log(this.companyWork);
     // this.activatedRoute.params.subscribe(params => {
     //   this.id = params['id'];
     //   console.log(this.id);
     // })
   }
 
+  // getCompanyWork() {
+  //   console.log("2")
+  //   this.api.apiGet("/company-work/list-byCompany")
+  //     .then((res: any) => {
+  //       console.log(res);
+  //       this.companyWork = res.data.list;
+  //     })
+  // }
+
   getCompanyWork() {
     this.httpClient.get(`${environment.API_URL}/company-work/list-byCompany`, {
-      headers: { Authorization: `Bearer ${localStorage.getItem('token')}` }
+      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
     })
       .subscribe((res: any) => {
         // console.log(res);
@@ -42,8 +57,8 @@ export class CompanyDashboardComponent implements OnInit {
       })
   }
 
-  onEdit(id:any){
-    this.dialog.open(DashboardComponent,{data: id})
+  onEdit(id: any) {
+    this.dialog.open(DashboardComponent, { data: id })
   }
 
 }

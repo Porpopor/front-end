@@ -23,9 +23,10 @@ import { CompanyNavbarComponent } from './company-page/company-navbar/company-na
 import { CompanyWorkComponent } from './company-page/company-work/company-work.component';
 import { CompanyDashboardComponent } from './company-page/company-dashboard/company-dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardComponent } from './company-page/dialog/dashboard/dashboard.component';
-
+import {ScrollingModule} from '@angular/cdk/scrolling';
+import { EditCompanyWorkComponent } from './company-page/dialog/edit-company-work/edit-company-work.component';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { DashboardComponent } from './company-page/dialog/dashboard/dashboard.co
     CompanyNavbarComponent,
     CompanyWorkComponent,
     CompanyDashboardComponent,
-    DashboardComponent
+    DashboardComponent,
+    EditCompanyWorkComponent
   ],
   imports: [
     BrowserModule,
@@ -56,9 +58,10 @@ import { DashboardComponent } from './company-page/dialog/dashboard/dashboard.co
     ReactiveFormsModule,
     CookieModule.forRoot(),
     BrowserAnimationsModule,
-    MatDialogModule
+    MatDialogModule,
+    ScrollingModule
   ],
-  entryComponents:[
+  entryComponents: [
     DashboardComponent
   ],
   providers: [],

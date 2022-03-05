@@ -23,11 +23,11 @@ export class ProfileComponent implements OnInit {
   picture: any;
   pathPicture = "http://localhost:8080/uploads/image/UserProfile/";
   sentEmail = "";
-  file: any ="";
+  file: any = "";
 
   helper = new JwtHelperService();
-  decodeToken:any;
-  token:any = localStorage.getItem('token');
+  decodeToken: any;
+  token: any = localStorage.getItem('token');
   TokenRefresh = localStorage.getItem('refreshToken');
 
   ttt: any = "";
@@ -41,10 +41,10 @@ export class ProfileComponent implements OnInit {
     private httpClient: HttpClient,
     private cookie: CookieService,
     private router: Router,
-    private api:ApiService
+    private api: ApiService
   ) { }
   ngOnInit(): void {
-   this.api.checkTokenRefresh();
+    // this.api.checkTokenRefresh();
     if (!this.checkLogin()) {
       this.router.navigate(['/login']);
     } else {
@@ -53,8 +53,8 @@ export class ProfileComponent implements OnInit {
   }
 
   checkLogin() {
+    // return this.cookie.hasKey('token');
     return this.cookie.hasKey('token');
-    // return localStorage.getItem('token');
   }
 
   changeImg(event: any) {
@@ -66,85 +66,107 @@ export class ProfileComponent implements OnInit {
     }
   }
 
+
+  onCancel() {
+    this.getProfile();
+  }
+
   getProfile() {
     this.httpClient.get(`${environment.API_URL}/user/profile`, {
-      headers: { Authorization: `Bearer ${this.cookie.hasKey('token')}` }
+      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+
+    }).subscribe((res: any) => {
+      console.log(res)
+      this.email = res.data.data.email;
+      this.firstname = res.data.data.firstName;
+      this.lastname = res.data.data.lastName;
+      this.sex = res.data.data.sex;
+      this.phone = res.data.data.phone;
+      this.picture = res.data.data.picture;
+      if (this.picture == null) {
+        this.picture = "assets/images/login/user.png";
+      }
+      if (res.data.data.verifyEmail == 1) {
+        this.verify = true;
+      }
+      // console.log(this.picture)
+    }, (error) => {
+
     })
-      .subscribe((res: any) => {
-        // console.log(res)
-        this.email = res.data.data.email;
-        this.firstname = res.data.data.firstName;
-        this.lastname = res.data.data.lastName;
-        this.sex = res.data.data.sex;
-        this.phone = res.data.data.phone;
-        this.picture = res.data.data.picture;
-        if(this.picture == null){
-          this.picture = "assets/images/login/user.png";
-        }
-        if (res.data.data.verifyEmail == 1) {
-          this.verify = true;
-        }
-        // console.log(this.picture)
-      })
   }
 
   onSubmit() {
-    
+
     let data = {
       firstName: this.firstname,
       lastName: this.lastname,
       sex: this.sex,
       phone: this.phone
     }
-    this.api.apiPut("/user/editUser", data).then((res:any) =>{
-      // console.log(res)
-      if(!this.ttt){
-        // console.log(this.ttt)
-      }else{
-        this.uploadimg();
-      }
-    })
+    this.httpClient.put(`${environment.API_URL}/user/editUser`, { firstName: this.firstname, lastName: this.lastname, sex: this.sex, phone: this.phone },
+      {
+        headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+
+      }).subscribe((res: any) => {
+        if (!this.ttt) {
+          console.log(this.ttt)
+        } else {
+          this.uploadimg();
+        }
+      })
   }
 
   onClick() {
     this.sentEmail = "SentEmail";
     this.click = true;
-    this.api.apiGet("/user/sentVerify-email").then((res:any) =>{
-      
-    })
+
+    this.httpClient.get(`${environment.API_URL}/user/sentVerify-email`,
+      {
+        headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+
+      }).subscribe((res: any) => {
+
+      }, (error: any) => {
+        console.log(error)
+      })
   }
 
   uploadimg() {
     const fileData = new FormData();
-    fileData.append('fileName', this.ttt ,this.ttt.name);
-    this.api.apiPost("/file/image/user-profile", fileData).then((res:any) =>{
-      // console.log(res);
-    })
+    fileData.append('fileName', this.ttt, this.ttt.name);
+    this.httpClient.post(`${environment.API_URL}/file/image/user-profile`, fileData,
+      {
+        headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+      })
+      .subscribe((res: any) => {
+        console.log(res);
+      })
   }
 
   onChangeEmail() {
-    let data:any ={
-      email : this.email
-    }
 
-    this.api.apiPut("/user/change-email",data).then((res:any) =>{
-      Swal.fire({
-        icon: 'success',
-        title: 'ส่ง ยืนยัน แล้ว',
-        confirmButtonText: 'ตกลง',
-        confirmButtonColor: '#2e6edf'
-      })
-    },(error:any) =>{
-      if(error.error.status == 417){
+    this.httpClient.put(`${environment.API_URL}/user/change-email`, { email: this.email },
+      {
+        headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+        
+      }).subscribe((res: any) => {
         Swal.fire({
-          icon: 'error',
-          title: 'Email นี้ ยืนยันแล้ว',
+          icon: 'success',
+          title: 'ส่ง ยืนยัน แล้ว',
           confirmButtonText: 'ตกลง',
           confirmButtonColor: '#2e6edf'
         })
-      }
-    })
-    
+      }, (error: any) => {
+        if (error.error.status == 417) {
+          Swal.fire({
+            icon: 'error',
+            title: 'Email นี้ ยืนยันแล้ว',
+            confirmButtonText: 'ตกลง',
+            confirmButtonColor: '#2e6edf'
+          })
+        }
+      })
+
     // this.httpClient.put(`${environment.API_URL}/user/change-email`, {
     //   email: this.email,
     // }, {

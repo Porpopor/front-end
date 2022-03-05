@@ -7,11 +7,11 @@ import { ApiService } from 'src/app/service/api/api.service';
 import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.css']
+  selector: 'app-edit-company-work',
+  templateUrl: './edit-company-work.component.html',
+  styleUrls: ['./edit-company-work.component.css']
 })
-export class DashboardComponent implements OnInit {
+export class EditCompanyWorkComponent implements OnInit {
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -20,11 +20,10 @@ export class DashboardComponent implements OnInit {
     private cookie: CookieService,
     private router: Router,
     private api: ApiService
-  ) {
-  }
+  ) { }
 
   ngOnInit(): void {
-    this.getData();
+    this.getData()
   }
 
   getData() {
@@ -35,11 +34,5 @@ export class DashboardComponent implements OnInit {
         console.log(res);
       })
   }
-
-  // getData() {
-  //   this.api.apiGet("/company-work/view-byCompany/" + this.data).then((res: any) => {
-  //     console.log(res);
-  //   })
-  // }
 
 }

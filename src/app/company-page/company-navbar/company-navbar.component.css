@@ -43,7 +43,7 @@ img:hover{
     width: 100%;
 }
 
-@media (max-width:600px) {
+@media (max-width:991px) {
     
     .dropdown{
         width: 100%;

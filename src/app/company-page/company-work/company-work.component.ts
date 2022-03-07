@@ -5,6 +5,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie';
 import { ApiService } from 'src/app/service/api/api.service';
 import { environment } from 'src/environments/environment';
+import { CreateCompanyWorkComponent } from '../dialog/create-company-work/create-company-work.component';
 import { DashboardComponent } from '../dialog/dashboard/dashboard.component';
 import { EditCompanyWorkComponent } from '../dialog/edit-company-work/edit-company-work.component';
 @Component({
@@ -41,6 +42,9 @@ export class CompanyWorkComponent implements OnInit {
         console.log(res);
         this.companyWork = res.data.list;
       })
+  }
+  onCreate(){
+    this.dialog.open(CreateCompanyWorkComponent)
   }
 
   onEdit(id: any) {

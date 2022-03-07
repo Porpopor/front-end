@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
+import { ApiService } from 'src/app/service/api/api.service';
 import { environment } from 'src/environments/environment';
 
 declare function myFunction(): any
@@ -26,7 +27,8 @@ export class HomeComponent implements OnInit {
     private httpClient: HttpClient,
     private router: Router,
     private cookie: CookieService,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private api : ApiService
   ) {
   }
 
@@ -62,8 +64,12 @@ export class HomeComponent implements OnInit {
   }
 
   getDataSearch() {
-    this.httpClient.post(`${environment.API_URL}/company-work/listAllByProvince`, { province: this.province_text, name: this.name_text })
-      .subscribe((res: any) => {
+    let data:any = {
+      province: this.province_text,
+      companyName: this.name_text
+    }
+    this.api.apiPostWeb("/company-work/listAllByProvince",data)
+      .then((res: any) => {
         // console.log(res)
         this.companyWorkList = res.data.companyWork;
       })

@@ -34,7 +34,7 @@ export class ApiService {
   }
 
   checkRefreshToken(): boolean {
-    this.decodeRefreshToken = this.helper.isTokenExpired( this.cookie.get('refreshToken'));
+    this.decodeRefreshToken = this.helper.isTokenExpired(this.cookie.get('refreshToken'));
     return this.decodeRefreshToken;
   }
 
@@ -49,9 +49,9 @@ export class ApiService {
         this.cookie.put('refreshToken', res.data.refreshToken);
         // window.location.reload();
       })
-      .catch((error:any) =>{
+      .catch((error: any) => {
         console.log(error.status)
-        if(error.status == 403){
+        if (error.status == 403) {
           this.cookie.removeAll()
           this.router.navigate(['/login'])
         }
@@ -88,34 +88,24 @@ export class ApiService {
 
   }
 
-  apiPost(url: any, data: any) {
-    this.checkTokenRefresh()
-    let token = this.getCookie()
-
-    let headers = {
+  async apiPost(url: any, data: any) {
+    if (this.checkToken()) await this.refreshToken();
+    const token = await this.getCookie()
+    const headers = await {
       headers: { Authorization: `Bearer ` + token }
     }
-
-    return new Promise((resolve, rejects) => {
-      this.httpClient.post(`${environment.API_URL + url}`, data, headers)
-        .subscribe((res: any) => {
-          resolve(res);
-        }, (error: any) => {
-          rejects(error)
-        })
-    })
+    return await this.httpClient.post<any>(`${environment.API_URL + url}`, data, headers)
+      .toPromise()
   }
 
-  test(url: any) {
-    let headers = {
-      headers: { Authorization: `Bearer ` + this.cookie.get('token') }
+  async apiPostWeb(url: any, data: any) {
+    if (this.checkToken()) await this.refreshToken();
+    const token = await this.getCookie()
+    const headers = await {
+      headers: { Authorization: `Bearer ` + token }
     }
-
-    let test = this.httpClient.get(`${environment.API_URL + url}`, headers)
-      .toPromise().catch((res: any) => {
-        console.log(res)
-      })
-    return test;
+    return await this.httpClient.post<any>(`${environment.API_URL + url}`, data)
+      .toPromise()
   }
 
   async apiGet(url: any) {
@@ -129,21 +119,24 @@ export class ApiService {
       .toPromise()
   }
 
-  apiPut(url: any, data: any) {
-    this.checkTokenRefresh()
-    let token = this.getCookie()
-
-    let headers = {
+  async apiGetWeb(url: any) {
+    if (this.checkToken()) await this.refreshToken();
+    const token = await this.getCookie()
+    const headers = await {
       headers: { Authorization: `Bearer ` + token }
     }
 
-    return new Promise((resolve, rejects) => {
-      this.httpClient.put(`${environment.API_URL + url}`, data, headers)
-        .subscribe((res: any) => {
-          resolve(res);
-        }, (error: any) => {
-          rejects(error)
-        })
-    })
+    return await this.httpClient.get<any>(`${environment.API_URL2 + url}`)
+      .toPromise()
+  }
+
+  async apiPut(url: any, data: any) {
+    if (this.checkToken()) await this.refreshToken();
+    const token = await this.getCookie()
+    const headers = await {
+      headers: { Authorization: `Bearer ` + token }
+    }
+    return await this.httpClient.put<any>(`${environment.API_URL + url}`,data, headers)
+      .toPromise()
   }
 }

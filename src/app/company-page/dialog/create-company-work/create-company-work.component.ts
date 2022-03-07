@@ -22,6 +22,16 @@ export class CreateCompanyWorkComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.onSubmit()
+  }
+
+
+  onSubmit(){
+
+    this.api.apiGetWeb("/v1/thailand/provinces")
+    .then((res:any)=>{
+      console.log(res)
+    })
   }
 
 }

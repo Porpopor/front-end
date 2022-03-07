@@ -99,17 +99,34 @@ export class ProfileComponent implements OnInit {
       sex: this.sex,
       phone: this.phone
     }
-    this.httpClient.put(`${environment.API_URL}/user/editUser`, { firstName: this.firstname, lastName: this.lastname, sex: this.sex, phone: this.phone },
-      {
-        headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    this.api.apiPut("/user/editUser",data)
+    .then((res:any) =>{
+      console.log(res)
+    })
+    .catch((error:any)=>{
+      if(error.error.status == 417){
+        Swal.fire({
+          icon: 'error',
+          title: 'กรุณากรอกข้อมูลให้ครบ',
+          confirmButtonText: 'ตกลง',
+          confirmButtonColor: '#2e6edf'
+        })
+      }
+    })
 
-      }).subscribe((res: any) => {
-        if (!this.ttt) {
-          console.log(this.ttt)
-        } else {
-          this.uploadimg();
-        }
-      })
+
+
+    // this.httpClient.put(`${environment.API_URL}/user/editUser`, { firstName: this.firstname, lastName: this.lastname, sex: this.sex, phone: this.phone },
+    //   {
+    //     headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+
+    //   }).subscribe((res: any) => {
+    //     if (!this.ttt) {
+    //       console.log(this.ttt)
+    //     } else {
+    //       this.uploadimg();
+    //     }
+    //   })
   }
 
   onClick() {

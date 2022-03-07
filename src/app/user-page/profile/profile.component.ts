@@ -45,11 +45,7 @@ export class ProfileComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     // this.api.checkTokenRefresh();
-    if (!this.checkLogin()) {
-      this.router.navigate(['/login']);
-    } else {
       this.getProfile();
-    }
   }
 
   checkLogin() {
@@ -72,10 +68,12 @@ export class ProfileComponent implements OnInit {
   }
 
   getProfile() {
-    this.httpClient.get(`${environment.API_URL}/user/profile`, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    // this.httpClient.get(`${environment.API_URL}/user/profile`, {
+    //   headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
 
-    }).subscribe((res: any) => {
+    // })
+    this.api.apiGet("/user/profile")
+    .then((res: any) => {
       console.log(res)
       this.email = res.data.data.email;
       this.firstname = res.data.data.firstName;
@@ -90,8 +88,6 @@ export class ProfileComponent implements OnInit {
         this.verify = true;
       }
       // console.log(this.picture)
-    }, (error) => {
-
     })
   }
 

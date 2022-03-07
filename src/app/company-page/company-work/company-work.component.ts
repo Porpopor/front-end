@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { CookieService } from 'ngx-cookie';
+import { ApiService } from 'src/app/service/api/api.service';
 import { environment } from 'src/environments/environment';
 import { DashboardComponent } from '../dialog/dashboard/dashboard.component';
 import { EditCompanyWorkComponent } from '../dialog/edit-company-work/edit-company-work.component';
@@ -14,7 +15,7 @@ import { EditCompanyWorkComponent } from '../dialog/edit-company-work/edit-compa
 export class CompanyWorkComponent implements OnInit {
 
   data: any = []
-  companyWork:any = []
+  companyWork: any = []
 
   check: boolean = false;
 
@@ -22,6 +23,7 @@ export class CompanyWorkComponent implements OnInit {
     private httpClient: HttpClient,
     private cookie: CookieService,
     private dialog: MatDialog,
+    private api: ApiService
   ) { }
 
   ngOnInit(): void {
@@ -31,10 +33,11 @@ export class CompanyWorkComponent implements OnInit {
   }
 
   getCompanyWork() {
-    this.httpClient.get(`${environment.API_URL}/company-work/list-byCompany`, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
-    })
-      .subscribe((res: any) => {
+    // this.httpClient.get(`${environment.API_URL}/company-work/list-byCompany`, {
+    //   headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    // })
+    this.api.apiGet("/company-work/list-byCompany")
+      .then((res: any) => {
         console.log(res);
         this.companyWork = res.data.list;
       })

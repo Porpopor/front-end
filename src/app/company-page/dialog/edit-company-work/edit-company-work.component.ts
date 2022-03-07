@@ -13,6 +13,9 @@ import { environment } from 'src/environments/environment';
 })
 export class EditCompanyWorkComponent implements OnInit {
 
+
+  
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private activatedRoute: ActivatedRoute,
@@ -33,6 +36,16 @@ export class EditCompanyWorkComponent implements OnInit {
       .subscribe((res: any) => {
         console.log(res);
       })
+  }
+
+  onFormdata() {
+    let form = {
+      name: ""
+    }
+
+    this.data.push(form)
+
+    console.log(this.data)
   }
 
 }

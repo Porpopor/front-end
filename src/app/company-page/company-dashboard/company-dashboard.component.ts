@@ -38,20 +38,12 @@ export class CompanyDashboardComponent implements OnInit {
     // })
   }
 
-  // getCompanyWork() {
-  //   console.log("2")
-  //   this.api.apiGet("/company-work/list-byCompany")
-  //     .then((res: any) => {
-  //       console.log(res);
-  //       this.companyWork = res.data.list;
-  //     })
-  // }
-
   getCompanyWork() {
-    this.httpClient.get(`${environment.API_URL}/company-work/list-byCompany`, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
-    })
-      .subscribe((res: any) => {
+    // this.httpClient.get(`${environment.API_URL}/company-work/list-byCompany`, {
+    //   headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    // })
+    this.api.apiGet("/company-work/list-byCompany")
+      .then((res: any) => {
         // console.log(res);
         this.companyWork = res.data.list;
       })

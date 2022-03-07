@@ -47,10 +47,8 @@ export class CompanyNavbarComponent implements OnInit {
   // }
 
   getProfile() {
-    this.httpClient.get(`${environment.API_URL}/company/profile`, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
-    })
-      .subscribe((res: any) => {
+    this.api.apiGet("/company/profile")
+      .then((res: any) => {
         this.picture = res.data.profile.picture;
         this.email = res.data.profile.email;
       })

@@ -28,18 +28,20 @@ export class HeaderComponent implements OnInit {
   loginComp: boolean = false;
   role: boolean = false;
   ngOnInit(): void {
+    // if (this.checkLogin()) {
+    //   this.login = true;
+    // } else {
+    //   this.login = false;
+    // }
     if (this.CheckRole()) {
+      this.login = true;
       this.role = true;
       this.getCompanyProfile();
     }
     else if (this.CheckRoleUser()) {
-      this.getProfile();
-      this.role = false;
-    }
-    if (this.checkLogin()) {
       this.login = true;
-    } else {
-      this.login = false;
+      console.log(this.CheckRoleUser())
+      this.getProfile();
     }
   }
 
@@ -71,25 +73,28 @@ export class HeaderComponent implements OnInit {
   }
 
   getProfile() {
-    this.httpClient.get(`${environment.API_URL}/user/profile`, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
-    })
-      .subscribe((res: any) => {
+    // this.httpClient.get(`${environment.API_URL}/user/profile`, {
+    //   headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    // })
+    this.role = false;
+    this.api.apiGet("/user/profile")
+      .then((res: any) => {
         this.picture = res.data.data.picture;
         this.verifyEmail = res.data.data.verifyEmail;
         this.email = res.data.data.email;
         if (res.data.data.verifyEmail == 0) {
           this.verify = false;
         }
-      },(error:any) =>{
+      }).catch((error:any) =>{
         console.log(error)
       })
   }
 
   getCompanyProfile() {
-    this.httpClient.get(`${environment.API_URL}/company/profile`, {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
-    }).subscribe((res: any) => {
+    // this.httpClient.get(`${environment.API_URL}/company/profile`, {
+    //   headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
+    this.api.apiGet("/company/profile")
+    .then((res: any) => {
       // console.log(res);
       this.picture = res.data.profile.picture;
       this.email = res.data.profile.email;
@@ -110,7 +115,7 @@ export class HeaderComponent implements OnInit {
 
   CheckRoleUser() {
     let role = this.cookie.get('role');
-    // console.log(role)
+    console.log(role)
     if (role == "USER") {
       return true;
     } else {

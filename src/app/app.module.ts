@@ -27,6 +27,7 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { DashboardComponent } from './company-page/dialog/dashboard/dashboard.component';
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { EditCompanyWorkComponent } from './company-page/dialog/edit-company-work/edit-company-work.component';
+import { CreateCompanyWorkComponent } from './company-page/dialog/create-company-work/create-company-work.component';
 
 @NgModule({
   declarations: [
@@ -48,7 +49,8 @@ import { EditCompanyWorkComponent } from './company-page/dialog/edit-company-wor
     CompanyWorkComponent,
     CompanyDashboardComponent,
     DashboardComponent,
-    EditCompanyWorkComponent
+    EditCompanyWorkComponent,
+    CreateCompanyWorkComponent
   ],
   imports: [
     BrowserModule,

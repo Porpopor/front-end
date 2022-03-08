@@ -20,28 +20,6 @@
                     <button type="button" class="btn btn-danger" style="width: 60px;">ลบ</button>
                 </td>
             </tr>
-            <tr class="show" *ngFor="let data of companyWork;let i = index">
-                <td>{{i+1}}</td>
-                <td>{{data.companyName}}</td>
-                <td>{{data.province}}</td>
-                <td>{{data.district}}</td>
-                <td>
-                    <button type="button" class="btn btn-primary" style="margin-right: 0.7rem;width: 60px;">ดู</button>
-                    <button (click)="onEdit(data.id)" type="button" class="btn btn-warning" style="margin-right: 0.7rem;width: 60px;">แก้ไข</button>
-                    <button type="button" class="btn btn-danger" style="width: 60px;">ลบ</button>
-                </td>
-            </tr>
-            <tr class="show" *ngFor="let data of companyWork;let i = index">
-                <td>{{i+1}}</td>
-                <td>{{data.companyName}}</td>
-                <td>{{data.province}}</td>
-                <td>{{data.district}}</td>
-                <td>
-                    <button type="button" class="btn btn-primary col" style="margin-right: 0.7rem;width: 60px;">ดู</button>
-                    <button (click)="onEdit(data.id)" type="button" class="btn btn-warning col" style="margin-right: 0.7rem;width: 60px;">แก้ไข</button>
-                    <button type="button" class="btn btn-danger col" style="width: 60px;">ลบ</button>
-                </td>
-            </tr>
         </table>
     </div>
 

@@ -1,1 +1,55 @@
-<p>create-company-work works!</p>
+<div class="form-outline form-white mb-4 col">
+    <label for="companyName">ชื่อ</label>
+    <input [(ngModel)]="CompanyName" type="text" id="companyName" class="form-control form-control-lg"
+        placeholder="ชื่อ" />
+    <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+</div>
+<div class="form-outline form-white mb-4 col">
+    <label for="province">province</label>
+    <input [(ngModel)]="Province" type="text" id="province" class="form-control form-control-lg" placeholder="ชื่อ" />
+    <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+</div>
+<div class="form-outline form-white mb-4 col">
+    <label for="district">district</label>
+    <input [(ngModel)]="District" type="text" id="district" class="form-control form-control-lg" placeholder="ชื่อ" />
+    <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+</div>
+<div class="form-outline form-white mb-4 col">
+    <label for="jobTitle">jobTitle</label>
+    <input [(ngModel)]="JobTitle" type="text" id="jobTitle" class="form-control form-control-lg" placeholder="ชื่อ" />
+    <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+</div>
+<div class="form-outline form-white mb-4 col">
+    <label for="salary">salary</label>
+    <input [(ngModel)]="Salary" type="text" id="salary" class="form-control form-control-lg" placeholder="ชื่อ" />
+    <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+</div>
+<div class="form-outline form-white mb-4 col">
+    <label for="welfareBenefits">welfareBenefits</label>
+    <input [(ngModel)]="WelfareBenefits" type="text" id="welfareBenefits" class="form-control form-control-lg"
+        placeholder="ชื่อ" />
+    <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+</div>
+<div class="form-outline form-white mb-4 col">
+    <label for="detailWork">detailWork</label>
+    <input [(ngModel)]="DetailWork" type="text" id="detailWork" class="form-control form-control-lg"
+        placeholder="ชื่อ" />
+    <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+</div>
+<div class="form-outline form-white mb-4 col">
+    <label for="feature">feature</label>
+    <div *ngFor="let data of feature">
+        <input [(ngModel)]="data.name" type="text" id="feature" class="form-control form-control-lg"
+            placeholder="ชื่อ" />
+    </div>
+    <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+</div>
+<div>
+    <button class="btn btn-web" (click)="onFormdata()">add</button>
+</div>
+<div class="form-outline form-white mb-4 col">
+    <label for="contact">contact</label>
+    <input [(ngModel)]="Contact" type="text" id="contact" class="form-control form-control-lg" placeholder="ชื่อ" />
+    <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+</div>
+<button class="btn btn-web" (click)="onSubmit()">ยืนยัน</button>

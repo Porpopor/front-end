@@ -28,6 +28,7 @@ import { DashboardComponent } from './company-page/dialog/dashboard/dashboard.co
 import {ScrollingModule} from '@angular/cdk/scrolling';
 import { EditCompanyWorkComponent } from './company-page/dialog/edit-company-work/edit-company-work.component';
 import { CreateCompanyWorkComponent } from './company-page/dialog/create-company-work/create-company-work.component';
+import { DeleteCompanyWorkComponent } from './company-page/dialog/delete-company-work/delete-company-work.component';
 
 @NgModule({
   declarations: [
@@ -50,7 +51,8 @@ import { CreateCompanyWorkComponent } from './company-page/dialog/create-company
     CompanyDashboardComponent,
     DashboardComponent,
     EditCompanyWorkComponent,
-    CreateCompanyWorkComponent
+    CreateCompanyWorkComponent,
+    DeleteCompanyWorkComponent
   ],
   imports: [
     BrowserModule,

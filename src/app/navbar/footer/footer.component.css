@@ -1,4 +1,10 @@
- 
+/* ==========================================
+    FOR DEMO PURPOSE
+  ========================================== */
+  body {
+    background: #2a2e32;
+  }
+  
   .text-small {
     font-size: 0.9rem;
   }
@@ -24,5 +30,12 @@
   
   footer {
     background: #212529;
-    line-height: normal;
   }
+  
+  
+  /* ==========================================
+      CUSTOM UTILS CLASSES
+    ========================================== */
+    body, html {
+      height: 100%;
+    }

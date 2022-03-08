@@ -7,6 +7,7 @@ import { ApiService } from 'src/app/service/api/api.service';
 import { environment } from 'src/environments/environment';
 import { CreateCompanyWorkComponent } from '../dialog/create-company-work/create-company-work.component';
 import { DashboardComponent } from '../dialog/dashboard/dashboard.component';
+import { DeleteCompanyWorkComponent } from '../dialog/delete-company-work/delete-company-work.component';
 import { EditCompanyWorkComponent } from '../dialog/edit-company-work/edit-company-work.component';
 @Component({
   selector: 'app-company-work',
@@ -43,12 +44,16 @@ export class CompanyWorkComponent implements OnInit {
         this.companyWork = res.data.list;
       })
   }
-  onCreate(){
+  onCreate() {
     this.dialog.open(CreateCompanyWorkComponent)
   }
 
   onEdit(id: any) {
     this.dialog.open(EditCompanyWorkComponent, { data: id })
+  }
+
+  onDelete(id: any) {
+    this.dialog.open(DeleteCompanyWorkComponent, { data: id })
   }
 
 

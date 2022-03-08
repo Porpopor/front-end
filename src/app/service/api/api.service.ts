@@ -99,11 +99,6 @@ export class ApiService {
   }
 
   async apiPostWeb(url: any, data: any) {
-    if (this.checkToken()) await this.refreshToken();
-    const token = await this.getCookie()
-    const headers = await {
-      headers: { Authorization: `Bearer ` + token }
-    }
     return await this.httpClient.post<any>(`${environment.API_URL + url}`, data)
       .toPromise()
   }

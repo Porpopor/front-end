@@ -15,6 +15,7 @@ import { RegisterComponent } from './user-page/register/register.component';
 import { ResetpasswordComponent } from './user-page/resetpassword/resetpassword.component';
 import { VerifyEmailComponent } from './user-page/verify-email/verify-email.component';
 import { ViewCompanyworkComponent } from './user-page/view-companywork/view-companywork.component';
+import { CompanyViewComponent } from './company-page/company-view/company-view.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -24,7 +25,7 @@ const routes: Routes = [
   { path: 'login/:id', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'register/:id', component: RegisterComponent },
-  { path: 'profile', component: ProfileComponent,canActivate: [GuardService] },
+  { path: 'profile', component: ProfileComponent, canActivate: [GuardService] },
   { path: 'forget-password', component: ForgetpasswordComponent },
   { path: 'view', component: ViewCompanyworkComponent },
   { path: 'view/:id', component: ViewCompanyworkComponent },
@@ -33,7 +34,14 @@ const routes: Routes = [
   { path: 'verify-email', component: VerifyEmailComponent },
   { path: 'verify-email/:id', component: VerifyEmailComponent },
   { path: 'find-job', component: FindJobComponent },
-  { path: 'company', component: CompanyHomeComponent,canActivate: [GuardCompanyService] },
+  {
+    path: 'company', component: CompanyHomeComponent, canActivate: [GuardCompanyService],
+    children:[
+      { path: 'dashboard', component: CompanyDashboardComponent},
+      { path: 'company-work', component: CompanyWorkComponent},
+      { path: 'view/:id', component: CompanyViewComponent},
+    ]
+  },
   // { path: 'company/:id', component: CompanyHomeComponent },
   { path: 'company-work', component: CompanyWorkComponent },
   { path: 'dash-board', component: CompanyDashboardComponent }

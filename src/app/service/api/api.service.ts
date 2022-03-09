@@ -134,4 +134,14 @@ export class ApiService {
     return await this.httpClient.put<any>(`${environment.API_URL + url}`,data, headers)
       .toPromise()
   }
+
+  async apiDelete(url:any, data:any){
+    if (this.checkToken()) await this.refreshToken();
+    const token = await this.getCookie()
+    const headers = await {
+      headers: { Authorization: `Bearer ` + token }
+    }
+    return await this.httpClient.delete<any>(`${environment.API_URL + url}/`+ data, headers)
+      .toPromise()
+  }
 }

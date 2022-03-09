@@ -2,11 +2,11 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { ApiService } from 'src/app/service/api/api.service';
 import { environment } from 'src/environments/environment';
 import { CreateCompanyWorkComponent } from '../dialog/create-company-work/create-company-work.component';
-import { DashboardComponent } from '../dialog/dashboard/dashboard.component';
 import { DeleteCompanyWorkComponent } from '../dialog/delete-company-work/delete-company-work.component';
 import { EditCompanyWorkComponent } from '../dialog/edit-company-work/edit-company-work.component';
 @Component({
@@ -25,7 +25,8 @@ export class CompanyWorkComponent implements OnInit {
     private httpClient: HttpClient,
     private cookie: CookieService,
     private dialog: MatDialog,
-    private api: ApiService
+    private api: ApiService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -48,12 +49,19 @@ export class CompanyWorkComponent implements OnInit {
     this.dialog.open(CreateCompanyWorkComponent)
   }
 
+  onView(id:any){
+    this.router.navigate(['/company/view/' + id])
+  }
+
   onEdit(id: any) {
     this.dialog.open(EditCompanyWorkComponent, { data: id })
   }
 
   onDelete(id: any) {
-    this.dialog.open(DeleteCompanyWorkComponent, { data: id })
+    let dialogRef =  this.dialog.open(DeleteCompanyWorkComponent, { data: id })
+    dialogRef.afterClosed().subscribe((res:any) =>{
+      this.getCompanyWork();
+    })
   }
 
 

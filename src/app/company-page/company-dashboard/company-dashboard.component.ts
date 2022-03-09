@@ -5,7 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { ApiService } from 'src/app/service/api/api.service';
 import { environment } from 'src/environments/environment';
-import { DashboardComponent } from '../dialog/dashboard/dashboard.component';
+import { DeleteCompanyWorkComponent } from '../dialog/delete-company-work/delete-company-work.component';
+import { EditCompanyWorkComponent } from '../dialog/edit-company-work/edit-company-work.component';
 
 @Component({
   selector: 'app-company-dashboard',
@@ -48,9 +49,16 @@ export class CompanyDashboardComponent implements OnInit {
         this.companyWork = res.data.list;
       })
   }
+  onView(id:any){
+    this.router.navigate(['/company/view/' + id])
+  }
 
   onEdit(id: any) {
-    this.dialog.open(DashboardComponent, { data: id })
+    this.dialog.open(EditCompanyWorkComponent, { data: id })
+  }
+
+  onDelete(id: any) {
+    this.dialog.open(DeleteCompanyWorkComponent, { data: id })
   }
 
 }

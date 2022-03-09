@@ -1,46 +1,47 @@
 <app-company-navbar></app-company-navbar>
 <div class="row m-0">
-    <div class="col-xl-2 col-lg-12 col-md-12 col-12 ">
-        <div class="d-flex flex-column vh-50 flex-shrink-0 p-3 text-white bg-light side-web shadoww" style="margin: 1rem;">
-                <ul class="nav nav-pills flex-column mb-auto">
-                  <li class="nav-item">
-                    <a (click)="clickdashboard()" class="nav-link active" aria-current="page" style="margin-top: 0rem;">
-                      <i class="fa fa-home"></i>
-                      <span class="ms-2">Dashboard</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a (click)="clickAddwork()" class="nav-link text-dark" routerLink="/company">
-                      <i class="fa fa-dashboard"></i>
-                      <span class="ms-2">เพิ่มงาน</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link text-dark">
-                      <i class="fa fa-first-order"></i>
-                      <span class="ms-2">My Orders</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link text-dark">
-                      <i class="fa fa-cog"></i>
-                      <span class="ms-2">Settings</span>
-                    </a>
-                  </li>
-                  <li>
-                    <a href="#" class="nav-link text-dark">
-                      <i class="fa fa-bookmark"></i>
-                      <span class="ms-2">Bookmarks</span>
-                    </a>
-                  </li>
-                </ul>
-        </div>
+  <div class="col-xl-2 col-lg-12 col-md-12 col-12 ">
+    <div class="d-flex flex-column vh-50 flex-shrink-0 p-3 text-white bg-light side-web shadoww" style="margin: 1rem;">
+      <ul class="nav nav-pills flex-column mb-auto">
+        <li class="nav-item">
+          <a routerLink="/company/dashboard" class="nav-link active" aria-current="page" style="margin-top: 0rem;">
+            <i class="fa fa-home"></i>
+            <span class="ms-2">Dashboard</span>
+          </a>
+        </li>
+        <li>
+          <a class="nav-link text-dark" routerLink="/company/company-work">
+            <i class="fa fa-dashboard"></i>
+            <span class="ms-2">เพิ่มงาน</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-dark">
+            <i class="fa fa-first-order"></i>
+            <span class="ms-2">My Orders</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-dark">
+            <i class="fa fa-cog"></i>
+            <span class="ms-2">Settings</span>
+          </a>
+        </li>
+        <li>
+          <a href="#" class="nav-link text-dark">
+            <i class="fa fa-bookmark"></i>
+            <span class="ms-2">Bookmarks</span>
+          </a>
+        </li>
+      </ul>
     </div>
-    <div class="col-xl-10 col-lg-12 col-md-12 col-12">
-        <div class="bg-light shadoww" style="padding: 1rem; margin: 1rem;border-radius: 10px;">
-            <app-company-dashboard *ngIf="dashboard"></app-company-dashboard>
-            <app-company-work *ngIf="addWork"></app-company-work>
-        </div>
+  </div>
+  <div class="col-xl-10 col-lg-12 col-md-12 col-12">
+    <div class="bg-light shadoww" style="padding: 1rem; margin: 1rem;border-radius: 10px;">
+      <router-outlet></router-outlet>
+      <!-- <app-company-dashboard *ngIf="dashboard"></app-company-dashboard>
+            <app-company-work *ngIf="addWork"></app-company-work> -->
+    </div>
 
-    </div>
+  </div>
 </div>

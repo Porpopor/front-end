@@ -11,9 +11,6 @@ import { CookieService } from 'ngx-cookie';
 })
 export class CompanyHomeComponent implements OnInit {
 
-
-  dashboard: boolean = true;
-  addWork: boolean = false;
   id: any;
 
   helper = new JwtHelperService();
@@ -34,15 +31,6 @@ export class CompanyHomeComponent implements OnInit {
     // this.decodeToken = this.helper.isTokenExpired(this.id)
     // console.log(this.decodeToken)
 
-  }
-  clickdashboard() {
-    this.dashboard = true;
-    this.addWork = false;
-  }
-
-  clickAddwork() {
-    this.dashboard = false;
-    this.addWork = true;
   }
   // checkRoleUser() {
   //   this.checkRoleCompany();

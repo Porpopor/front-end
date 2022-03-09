@@ -18,17 +18,16 @@ import { VerifyEmailComponent } from './user-page/verify-email/verify-email.comp
 import { FindJobComponent } from './user-page/find-job/find-job.component';
 import { FooterComponent } from './navbar/footer/footer.component';
 import { CompanyHomeComponent } from './company-page/company-home/company-home.component';
-import { SidebarComponent } from './company-page/sidebar/sidebar.component';
 import { CompanyNavbarComponent } from './company-page/company-navbar/company-navbar.component';
 import { CompanyWorkComponent } from './company-page/company-work/company-work.component';
 import { CompanyDashboardComponent } from './company-page/company-dashboard/company-dashboard.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatDialogModule } from '@angular/material/dialog';
-import { DashboardComponent } from './company-page/dialog/dashboard/dashboard.component';
-import {ScrollingModule} from '@angular/cdk/scrolling';
+import { ScrollingModule } from '@angular/cdk/scrolling';
 import { EditCompanyWorkComponent } from './company-page/dialog/edit-company-work/edit-company-work.component';
 import { CreateCompanyWorkComponent } from './company-page/dialog/create-company-work/create-company-work.component';
 import { DeleteCompanyWorkComponent } from './company-page/dialog/delete-company-work/delete-company-work.component';
+import { CompanyModule } from './company-page/module/company.module';
 
 @NgModule({
   declarations: [
@@ -44,12 +43,11 @@ import { DeleteCompanyWorkComponent } from './company-page/dialog/delete-company
     VerifyEmailComponent,
     FindJobComponent,
     FooterComponent,
-    CompanyHomeComponent,
-    SidebarComponent,
-    CompanyNavbarComponent,
-    CompanyWorkComponent,
-    CompanyDashboardComponent,
-    DashboardComponent,
+    // CompanyHomeComponent,
+    // SidebarComponent,
+    // CompanyNavbarComponent,
+    // CompanyWorkComponent,
+    // CompanyDashboardComponent,
     EditCompanyWorkComponent,
     CreateCompanyWorkComponent,
     DeleteCompanyWorkComponent
@@ -63,11 +61,12 @@ import { DeleteCompanyWorkComponent } from './company-page/dialog/delete-company
     CookieModule.forRoot(),
     BrowserAnimationsModule,
     MatDialogModule,
-    ScrollingModule
+    ScrollingModule,
+    CompanyModule
   ],
-  entryComponents: [
-    DashboardComponent
-  ],
+  // entryComponents: [
+  //   DashboardComponent
+  // ],
   providers: [],
   bootstrap: [AppComponent]
 })

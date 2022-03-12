@@ -90,7 +90,7 @@ export class EditCompanyWorkComponent implements OnInit {
     for (let i = 0; i < this.picture.length; i++) {
       fileData.append('files', this.picture[i][0], this.picture[i][0].name);
     }
-    this.api.apiPost("/file/test/" + this.data, fileData)
+    this.api.apiPost("/file/company-work/" + this.data, fileData)
       .then((res: any) => {
         console.log(res);
       })

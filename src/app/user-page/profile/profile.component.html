@@ -45,13 +45,13 @@
                     </div>
                     <div class="col">
                         <label for="formFile" class="form-label">อัพโหลดรูปภาพ </label>
-                        <input class="form-control" type="file" id="formFile" accept="image/*" #inputfile
+                        <input class="form-control" type="file" id="formFile" accept="image/*" #inputfile multiple
                             (change)="changeImg($event)">
                     </div>
                     <div class="row" style="margin-top: 1.5rem;">
                         <div class="col-6">
                             <button class="btn btn-web form-control-lg" style="width: 100%;"
-                                type="submit" (click)="onSubmit()">บันทึก</button>
+                                type="submit" (click)="uploadimg()">บันทึก</button>
                         </div>
                         <div class="col-6">
                             <button class="btn btn-web3 form-control-lg" style="width: 100%;"

@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit {
     }
     else if (this.CheckRoleUser()) {
       this.login = true;
-      console.log(this.CheckRoleUser())
+      // console.log(this.CheckRoleUser())
       this.getProfile();
     }
   }
@@ -115,7 +115,7 @@ export class HeaderComponent implements OnInit {
 
   CheckRoleUser() {
     let role = this.cookie.get('role');
-    console.log(role)
+    // console.log(role)
     if (role == "USER") {
       return true;
     } else {

@@ -1,1 +1,12 @@
-<p>edit-company-work works!</p>
+<label for="formFile" class="form-label">อัพโหลดรูปภาพ </label>
+    <div class="col" *ngFor="let i of imageArray;let count = index">
+        <div class="div-image">
+            <img class="img-profile" [src]='getPicture[count]' alt="" style="margin-bottom: 1rem;width: 50%;">
+        </div>
+        <input class="form-control" type="file" id="formFile" accept="image/*" #inputfile multiple
+            (change)="changeImg($event)">
+    </div>
+    <div>
+        <button class="btn btn-web" (click)="onImageArray()">เพิ่ม</button>
+    </div>
+    <button class="btn btn-web" (click)="uploadimg()">ยืนยัน</button>

@@ -42,6 +42,7 @@ export class LoginComponent implements OnInit {
       this.id = params['id'];
       // console.log(this.id);
     })
+    if(!this.helper.isTokenExpired(this.cookie.get('refreshToken'))) this.router.navigate(['.'])
   }
 
 
@@ -117,7 +118,7 @@ export class LoginComponent implements OnInit {
         this.decodetoken = this.helper.getTokenExpirationDate(res.data.token)
         console.log(this.decodetoken);
 
-        this.router.navigate(["/company"])
+        this.router.navigate(["/company/dashboard"])
       }, (error: any) => {
         Swal.fire({
           icon: 'error',

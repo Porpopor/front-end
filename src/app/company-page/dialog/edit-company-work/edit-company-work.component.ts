@@ -13,8 +13,11 @@ import { environment } from 'src/environments/environment';
 })
 export class EditCompanyWorkComponent implements OnInit {
 
-
-  
+  image: any
+  picture: any = []
+  getPicture: any = []
+  imageArray: any = []
+  pictureArray:any
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
@@ -27,16 +30,26 @@ export class EditCompanyWorkComponent implements OnInit {
 
   ngOnInit(): void {
     this.getData()
+    this.onImageArray()
   }
 
   getData() {
-    this.httpClient.get(`${environment.API_URL}/company-work/view-byCompany/` + this.data , {
-      headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
-    })
-      .subscribe((res: any) => {
+    // this.getImage()
+    this.api.apiGet("/company-work/view-byCompany/" + this.data)
+      .then((res: any) => {
         console.log(res);
+        let picture = res.data.data.picture;
+        this.pictureArray = (picture.split(", "))
+        console.log(this.pictureArray)
       })
   }
+
+  // getImage(){
+  //   this.api.apiGet("/file/testfile/" + this.data)
+  //   .then((res:any)=>{
+  //     console.log(res)
+  //   })
+  // }
 
   onFormdata() {
     let form = {
@@ -46,6 +59,44 @@ export class EditCompanyWorkComponent implements OnInit {
     this.data.push(form)
 
     console.log(this.data)
+  }
+
+  onImageArray() {
+    let form = {
+
+    }
+    this.imageArray.push(form)
+    // console.log(this.imageArray)
+  }
+
+  changeImg(event: any) {
+    this.image = <File>event.target.files;
+    for (let i = 0; i < this.image.length; i++) {
+      const imgRegister = new FileReader();
+      imgRegister.readAsDataURL(this.image[i])
+      imgRegister.onload = () => {
+        this.picture.push(this.image)
+        this.getPicture.push(imgRegister.result)
+      }
+      console.log(this.picture)
+      console.log(this.getPicture)
+    }
+  }
+
+  uploadimg() {
+    const fileData = new FormData();
+    console.log(this.picture);
+    console.log(this.picture.length);
+    for (let i = 0; i < this.picture.length; i++) {
+      fileData.append('files', this.picture[i][0], this.picture[i][0].name);
+    }
+    this.api.apiPost("/file/test/" + this.data, fileData)
+      .then((res: any) => {
+        console.log(res);
+      })
+      .catch((error: any) => {
+        console.log(error)
+      })
   }
 
 }

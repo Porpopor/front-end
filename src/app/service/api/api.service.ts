@@ -20,16 +20,19 @@ export class ApiService {
     private router: Router
   ) { }
 
-  checkTokenRefresh() {
-    if (this.checkToken()) {
+  async checkTokenRefresh() {
+    if (this.checkToken() && this.cookie.get('role') == "USER") {
       console.log(this.checkToken())
-      this.refreshToken();
+      await this.refreshTokenUser();
+    }
+    if(this.checkToken() && this.cookie.get('role') == "COMPANY"){
+      await this.refreshTokenCompany();
     }
   }
 
   checkToken(): boolean {
-    let token: any = this.cookie.get('token');
-    this.decodeToken = this.helper.isTokenExpired(token)
+    // let token: any = this.cookie.get('token');
+    this.decodeToken = this.helper.isTokenExpired(this.cookie.get('token'))
     return this.decodeToken;
   }
 
@@ -38,8 +41,28 @@ export class ApiService {
     return this.decodeRefreshToken;
   }
 
-  async refreshToken() {
+  async refreshTokenUser() {
     return await this.httpClient.get(`${environment.API_URL}/user/refresh-token`, {
+      headers: { Authorization: `Bearer ${this.cookie.get('refreshToken')}` }
+    }).toPromise()
+      .then((res: any) => {
+        console.log(res);
+        this.cookie.put('role', res.data.role)
+        this.cookie.put('token', res.data.token);
+        this.cookie.put('refreshToken', res.data.refreshToken);
+        // window.location.reload();
+      })
+      .catch((error: any) => {
+        console.log(error.status)
+        if (error.status == 403) {
+          this.cookie.removeAll()
+          this.router.navigate(['/login'])
+        }
+      })
+  }
+
+  async refreshTokenCompany() {
+    return await this.httpClient.get(`${environment.API_URL}/company/refresh-token`, {
       headers: { Authorization: `Bearer ${this.cookie.get('refreshToken')}` }
     }).toPromise()
       .then((res: any) => {
@@ -89,7 +112,7 @@ export class ApiService {
   }
 
   async apiPost(url: any, data: any) {
-    if (this.checkToken()) await this.refreshToken();
+    await this.checkTokenRefresh();
     const token = await this.getCookie()
     const headers = await {
       headers: { Authorization: `Bearer ` + token }
@@ -104,7 +127,8 @@ export class ApiService {
   }
 
   async apiGet(url: any) {
-    if (this.checkToken()) await this.refreshToken();
+    // if (this.checkToken() && this.cookie.get('role') == "USER") await this.refreshTokenUser();
+    await this.checkTokenRefresh();
     const token = await this.getCookie()
     const headers = await {
       headers: { Authorization: `Bearer ` + token }
@@ -115,7 +139,7 @@ export class ApiService {
   }
 
   async apiGetWeb(url: any) {
-    if (this.checkToken()) await this.refreshToken();
+    if (this.checkToken()) await this.refreshTokenUser();
     const token = await this.getCookie()
     const headers = await {
       headers: { Authorization: `Bearer ` + token }
@@ -126,7 +150,7 @@ export class ApiService {
   }
 
   async apiPut(url: any, data: any) {
-    if (this.checkToken()) await this.refreshToken();
+    await this.checkTokenRefresh();
     const token = await this.getCookie()
     const headers = await {
       headers: { Authorization: `Bearer ` + token }
@@ -136,7 +160,7 @@ export class ApiService {
   }
 
   async apiDelete(url:any, data:any){
-    if (this.checkToken()) await this.refreshToken();
+    await this.checkTokenRefresh();
     const token = await this.getCookie()
     const headers = await {
       headers: { Authorization: `Bearer ` + token }

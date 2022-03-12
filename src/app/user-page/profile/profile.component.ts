@@ -45,7 +45,7 @@ export class ProfileComponent implements OnInit {
   ) { }
   ngOnInit(): void {
     // this.api.checkTokenRefresh();
-      this.getProfile();
+    this.getProfile();
   }
 
   checkLogin() {
@@ -73,22 +73,22 @@ export class ProfileComponent implements OnInit {
 
     // })
     this.api.apiGet("/user/profile")
-    .then((res: any) => {
-      console.log(res)
-      this.email = res.data.data.email;
-      this.firstname = res.data.data.firstName;
-      this.lastname = res.data.data.lastName;
-      this.sex = res.data.data.sex;
-      this.phone = res.data.data.phone;
-      this.picture = res.data.data.picture;
-      if (this.picture == null) {
-        this.picture = "assets/images/login/user.png";
-      }
-      if (res.data.data.verifyEmail == 1) {
-        this.verify = true;
-      }
-      // console.log(this.picture)
-    })
+      .then((res: any) => {
+        console.log(res)
+        this.email = res.data.data.email;
+        this.firstname = res.data.data.firstName;
+        this.lastname = res.data.data.lastName;
+        this.sex = res.data.data.sex;
+        this.phone = res.data.data.phone;
+        this.picture = res.data.data.picture;
+        if (this.picture == null) {
+          this.picture = "assets/images/login/user.png";
+        }
+        if (res.data.data.verifyEmail == 1) {
+          this.verify = true;
+        }
+        // console.log(this.picture)
+      })
   }
 
   onSubmit() {
@@ -99,20 +99,31 @@ export class ProfileComponent implements OnInit {
       sex: this.sex,
       phone: this.phone
     }
-    this.api.apiPut("/user/editUser",data)
-    .then((res:any) =>{
-      console.log(res)
-    })
-    .catch((error:any)=>{
-      if(error.error.status == 417){
+    this.api.apiPut("/user/editUser", data)
+      .then((res: any) => {
         Swal.fire({
-          icon: 'error',
-          title: 'กรุณากรอกข้อมูลให้ครบ',
+          icon: 'success',
+          title: 'บันทึกสำเร็จ',
           confirmButtonText: 'ตกลง',
           confirmButtonColor: '#2e6edf'
         })
-      }
-    })
+        if (!this.ttt) {
+          console.log(this.ttt)
+        } else {
+          // this.uploadimg();
+        }
+        console.log(res)
+      })
+      .catch((error: any) => {
+        if (error.error.status == 417) {
+          Swal.fire({
+            icon: 'error',
+            title: 'กรุณากรอกข้อมูลให้ครบ',
+            confirmButtonText: 'ตกลง',
+            confirmButtonColor: '#2e6edf'
+          })
+        }
+      })
 
 
 
@@ -146,12 +157,10 @@ export class ProfileComponent implements OnInit {
 
   uploadimg() {
     const fileData = new FormData();
+    console.log(this.ttt);
     fileData.append('fileName', this.ttt, this.ttt.name);
-    this.httpClient.post(`${environment.API_URL}/file/image/user-profile`, fileData,
-      {
-        headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
-      })
-      .subscribe((res: any) => {
+    this.api.apiPost("/file/image/user-profile", fileData)
+      .then((res: any) => {
         console.log(res);
       })
   }
@@ -161,7 +170,7 @@ export class ProfileComponent implements OnInit {
     this.httpClient.put(`${environment.API_URL}/user/change-email`, { email: this.email },
       {
         headers: { Authorization: `Bearer ${this.cookie.get('token')}` }
-        
+
       }).subscribe((res: any) => {
         Swal.fire({
           icon: 'success',

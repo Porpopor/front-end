@@ -16,6 +16,7 @@ import { ResetpasswordComponent } from './user-page/resetpassword/resetpassword.
 import { VerifyEmailComponent } from './user-page/verify-email/verify-email.component';
 import { ViewCompanyworkComponent } from './user-page/view-companywork/view-companywork.component';
 import { CompanyViewComponent } from './company-page/company-view/company-view.component';
+import { GuardLoginService } from './service/guard-Login/guard-login.service';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -36,10 +37,10 @@ const routes: Routes = [
   { path: 'find-job', component: FindJobComponent },
   {
     path: 'company', component: CompanyHomeComponent, canActivate: [GuardCompanyService],
-    children:[
-      { path: 'dashboard', component: CompanyDashboardComponent},
-      { path: 'company-work', component: CompanyWorkComponent},
-      { path: 'view/:id', component: CompanyViewComponent},
+    children: [
+      { path: 'dashboard', component: CompanyDashboardComponent },
+      { path: 'company-work', component: CompanyWorkComponent },
+      { path: 'view/:id', component: CompanyViewComponent },
     ]
   },
   // { path: 'company/:id', component: CompanyHomeComponent },

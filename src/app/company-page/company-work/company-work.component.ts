@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie';
 import { ApiService } from 'src/app/service/api/api.service';
@@ -26,7 +26,7 @@ export class CompanyWorkComponent implements OnInit {
     private cookie: CookieService,
     private dialog: MatDialog,
     private api: ApiService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -46,7 +46,13 @@ export class CompanyWorkComponent implements OnInit {
       })
   }
   onCreate() {
-    this.dialog.open(CreateCompanyWorkComponent)
+    let dialogRef = this.dialog.open(CreateCompanyWorkComponent, {
+      height: '800px',
+      width: '800px'
+    })
+    dialogRef.afterClosed().subscribe((res:any) =>{
+      this.getCompanyWork();
+    })
   }
 
   onView(id:any){

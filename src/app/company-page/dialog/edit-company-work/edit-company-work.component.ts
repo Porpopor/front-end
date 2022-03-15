@@ -70,14 +70,14 @@ export class EditCompanyWorkComponent implements OnInit {
   }
 
   changeImg(event: any) {
-    this.image = <File>event.target.files;
-    for (let i = 0; i < this.image.length; i++) {
+    this.image = <File>event.target.files[0];
+    // for (let i = 0; i < this.image.length; i++) {
       const imgRegister = new FileReader();
-      imgRegister.readAsDataURL(this.image[i])
+      imgRegister.readAsDataURL(this.image)
       imgRegister.onload = () => {
         this.picture.push(this.image)
         this.getPicture.push(imgRegister.result)
-      }
+      // }
       console.log(this.picture)
       console.log(this.getPicture)
     }
@@ -88,7 +88,7 @@ export class EditCompanyWorkComponent implements OnInit {
     console.log(this.picture);
     console.log(this.picture.length);
     for (let i = 0; i < this.picture.length; i++) {
-      fileData.append('files', this.picture[i][0], this.picture[i][0].name);
+      fileData.append('files', this.picture[i], this.picture[i].name);
     }
     this.api.apiPost("/file/company-work/" + this.data, fileData)
       .then((res: any) => {

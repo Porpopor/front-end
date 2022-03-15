@@ -14,11 +14,14 @@
                 <td>{{data.companyName}}</td>
                 <td>{{data.province}}</td>
                 <td>{{data.district}}</td>
-                <td>
-                    <button (click)="onView(data.id)" type="button" class="btn btn-primary" style="margin-right: 0.7rem;width: 60px;">ดู</button>
-                    <button (click)="onEdit(data.id)" type="button" class="btn btn-warning" style="margin-right: 0.7rem;width: 60px;">แก้ไข</button>
-                    <button (click)="onDelete(data.id)" type="button" class="btn btn-danger" style="width: 60px;">ลบ</button>
-                </td>
+                <td style="display: flex;justify-content: center;align-items: center;">
+                    <button (click)="onView(data.id)" type="button" class="btn btn-primary"
+                        style="width: 60px;">ดู</button>
+                    <button (click)="onEdit(data.id)" type="button" class="btn btn-warning"
+                        style="width: 60px;margin: 1rem;">แก้ไข</button>
+                    <button (click)="onDelete(data.id)" type="button" class="btn btn-danger"
+                        style="width: 60px;">ลบ</button>
+            </td>
             </tr>
         </table>
     </div>

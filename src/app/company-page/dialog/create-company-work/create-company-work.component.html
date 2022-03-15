@@ -1,3 +1,4 @@
+<!-- <mat-dialog-content class="mat-typography"> -->
 <div class="container">
     <div class="form-outline form-white mb-4 col">
         <label for="companyName">ชื่อ</label>
@@ -5,53 +6,96 @@
             placeholder="ชื่อ" />
         <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
     </div>
+    <div class="row">
+        <div class="form-outline form-white mb-4 col-6">
+            <label for="province">จังหวัด</label>
+            <select id="mySelect" class="form-control search-slt form-control-lg" [(ngModel)]="Province"
+                (change)="getDistrict($event)">
+                <option value="{{provinces['province']}}" *ngFor="let provinces of provinceData">
+                    {{provinces['province']}}
+                </option>
+            </select>
+        </div>
+        <div class="form-outline form-white mb-4 col-6">
+            <label for="district">อำเภอ</label>
+            <select id="mySelect" class="form-control search-slt form-control-lg" [(ngModel)]="District">
+                <option value="{{districts}}" *ngFor="let districts of districtData;let i = index">
+                    {{districts}}
+                </option>
+            </select>
+        </div>
+    </div>
     <div class="form-outline form-white mb-4 col">
-        <label for="province">province</label>
-        <input [(ngModel)]="Province" type="text" id="province" class="form-control form-control-lg" placeholder="ชื่อ" />
+        <label for="jobTitle">ตำแหน่งงาน</label>
+        <input [(ngModel)]="JobTitle" type="text" id="jobTitle" class="form-control form-control-lg" placeholder="" />
         <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
     </div>
     <div class="form-outline form-white mb-4 col">
-        <label for="district">district</label>
-        <input [(ngModel)]="District" type="text" id="district" class="form-control form-control-lg" placeholder="ชื่อ" />
+        <label for="salary">เงินเดือน</label>
+        <input [(ngModel)]="Salary" type="text" id="salary" class="form-control form-control-lg" placeholder="" />
         <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
     </div>
-    <div class="form-outline form-white mb-4 col">
-        <label for="jobTitle">jobTitle</label>
-        <input [(ngModel)]="JobTitle" type="text" id="jobTitle" class="form-control form-control-lg" placeholder="ชื่อ" />
-        <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
-    </div>
-    <div class="form-outline form-white mb-4 col">
-        <label for="salary">salary</label>
-        <input [(ngModel)]="Salary" type="text" id="salary" class="form-control form-control-lg" placeholder="ชื่อ" />
-        <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
-    </div>
-    <div class="form-outline form-white mb-4 col">
-        <label for="welfareBenefits">welfareBenefits</label>
-        <input [(ngModel)]="WelfareBenefits" type="text" id="welfareBenefits" class="form-control form-control-lg"
-            placeholder="ชื่อ" />
-        <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
-    </div>
-    <div class="form-outline form-white mb-4 col">
-        <label for="detailWork">detailWork</label>
-        <input [(ngModel)]="DetailWork" type="text" id="detailWork" class="form-control form-control-lg"
-            placeholder="ชื่อ" />
-        <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
-    </div>
-    <div class="form-outline form-white mb-4 col">
-        <label for="feature">feature</label>
-        <div *ngFor="let data of feature">
-            <input [(ngModel)]="data.name" type="text" id="feature" class="form-control form-control-lg"
-                placeholder="ชื่อ" />
+    <label for="welfareBenefits">สวัสดิการ</label>
+    <div class="row form-outline form-white col">
+        <div *ngFor="let data of welfareBenefits;let i = index" class="mb-4 col-lg-11 col-md-10" style="display: flex;">
+            <input [(ngModel)]="data.name" type="text" id="welfareBenefits" class="form-control form-control-lg"
+                placeholder="" />
+            <button *ngIf="i > 0" class="btn btn-danger" (click)="deleteWelfareBenefits(i)"><i class="fa fa-minus"
+                    aria-hidden="true"></i></button>
+        </div>
+        <div class="col-lg-1 col-md-2 mb-4">
+            <button class="btn btn-primary" style="width: 100%;height: 100%;" (click)="onFormWelfareBenefits()"><i
+                    class="fa fa-plus" aria-hidden="true"></i></button>
         </div>
         <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
     </div>
-    <div>
-        <button class="btn btn-web" (click)="onFormdata()">add</button>
+    <label for="feature">คุณสมบัติ</label>
+    <div class="row form-outline form-white col">
+        <div *ngFor="let data of feature;let i = index" class="mb-4 col-lg-11 col-md-10" style="display: flex;">
+            <input [(ngModel)]="data.name" type="text" id="feature" class="form-control form-control-lg"
+                placeholder="" />
+            <button *ngIf="i > 0" class="btn btn-danger" (click)="deleteFeature(i)"><i class="fa fa-minus"
+                    aria-hidden="true"></i></button>
+        </div>
+        <div class="col-lg-1 col-md-2 mb-4">
+            <button class="btn btn-primary" style="width: 100%;height: 100%;" (click)="onFormdata()"><i
+                    class="fa fa-plus" aria-hidden="true"></i></button>
+        </div>
     </div>
     <div class="form-outline form-white mb-4 col">
-        <label for="contact">contact</label>
-        <input [(ngModel)]="Contact" type="text" id="contact" class="form-control form-control-lg" placeholder="ชื่อ" />
+        <label for="detailWork">รายละเอียดงาน</label>
+        <textarea rows="5" [(ngModel)]="DetailWork" type="text" id="detailWork" class="form-control form-control-lg"
+            placeholder=""></textarea>
         <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+    </div>
+    <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+    <div class="form-outline form-white mb-4 col">
+        <label for="contact">ติดต่อ</label>
+        <textarea rows="5" [(ngModel)]="Contact" type="text" id="contact" class="form-control form-control-lg"
+            placeholder=""></textarea>
+        <!-- <small *ngIf="firstname && firstname.touched && firstname.invalid">กรุณากรอก ชื่อจริง</small> -->
+    </div>
+    <label for="formFile" class="form-label">อัพโหลดรูปภาพ </label>
+    <div style="overflow-x:auto;">
+        <div class="row form-outline form-white col">
+            <div class="mb-4 col-lg-11 col-md-10" *ngFor="let count of imageArray;let i = index">
+                <div style="display: flex;">
+                    <a class="" style="display: flex;min-width: 300px;min-height: 300px;align-items: center;
+                    justify-content: center;" (click)="inputfile.click()">
+                        <img class="img-profile" [src]='getPicture[i]' alt="" style="margin-bottom: 1rem;width: 50%;">
+                        <i *ngIf="getPicture[i] == null" class="fa fa-plus" style="position: relative;" aria-hidden="true"></i></a>
+                    <input class="d-none" type="file" id="formFile" accept="image/*" #inputfile
+                        (change)="changeImg($event,i)">
+                    <button *ngIf="i > 0" class="btn btn-danger" (click)="deleteImageArray(i)">
+                        <i class="fa fa-minus" aria-hidden="true"></i></button>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-2 mb-4">
+                <button class="btn btn-primary" style="width: 100%;height: 100%;" (click)="onImageArray()">
+                    <i class="fa fa-plus" aria-hidden="true"></i></button>
+            </div>
+        </div>
     </div>
     <button class="btn btn-web" (click)="onSubmit()">ยืนยัน</button>
 </div>
+<!-- </mat-dialog-content> -->

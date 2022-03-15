@@ -139,11 +139,12 @@ export class ApiService {
   }
 
   async apiGetWeb(url: any) {
-    if (this.checkToken()) await this.refreshTokenUser();
-    const token = await this.getCookie()
-    const headers = await {
-      headers: { Authorization: `Bearer ` + token }
-    }
+    // if (this.checkToken() && this.cookie.get('role') == "USER") await this.refreshTokenUser();
+    return await this.httpClient.get<any>(`${environment.API_URL + url}`)
+      .toPromise()
+  }
+
+  async apiGetWeb2(url: any) {
 
     return await this.httpClient.get<any>(`${environment.API_URL2 + url}`)
       .toPromise()

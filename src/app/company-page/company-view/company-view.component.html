@@ -1,4 +1,24 @@
 <h1>
     <button onclick="history.back()" class="btn btn-web">
-        <i style="margin-right: 1rem;" class="fa fa-arrow-left" aria-hidden="true"></i>back</button> View
+        <i class="fa fa-arrow-left" aria-hidden="true"></i></button> View
 </h1>
+<div>
+    <table>
+        <tr>
+            <td>ชื่องาน</td>
+            <td>{{data.companyName}}</td>
+        </tr>
+        <tr>
+            <td>ตำแหน่งงาน</td>
+            <td>{{data.jobTitle}}</td>
+        </tr>
+        <tr>
+            <td>จังหวัด</td>
+            <td>{{data.province}}</td>
+        </tr>
+        <tr>
+            <td>อำเภอ</td>
+            <td>{{data.district}}</td>
+        </tr>
+    </table>
+</div>

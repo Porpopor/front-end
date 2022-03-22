@@ -163,6 +163,9 @@ export class ProfileComponent implements OnInit {
       .then((res: any) => {
         console.log(res);
       })
+      .catch((error:any) =>{
+        console.log(error)
+      })
   }
 
   onChangeEmail() {

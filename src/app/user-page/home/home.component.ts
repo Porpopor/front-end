@@ -76,8 +76,8 @@ export class HomeComponent implements OnInit {
   }
 
   getClick(id: any) {
-    this.httpClient.post(`${environment.API_URL}/company-work/view-byid`, { id })
-      .subscribe((res: any) => {
+    this.api.apiGetWeb("/company-work/view-byid/" + id)
+      .then((res: any) => {
         // console.log(res);
         this.router.navigate([`/view/${id}`],{ relativeTo: this.activateRoute });
       })

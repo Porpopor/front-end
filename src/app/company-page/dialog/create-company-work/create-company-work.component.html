@@ -83,7 +83,7 @@
                     <a class="" style="display: flex;min-width: 300px;min-height: 300px;align-items: center;
                     justify-content: center;" (click)="inputfile.click()">
                         <img class="img-profile" [src]='getPicture[i]' alt="" style="margin-bottom: 1rem;width: 50%;">
-                        <i *ngIf="getPicture[i] == null" class="fa fa-plus" style="position: relative;" aria-hidden="true"></i></a>
+                        <i *ngIf="getPicture[i] == null" class="fa fa-plus" style="position: relative;left: -83px;" aria-hidden="true"></i></a>
                     <input class="d-none" type="file" id="formFile" accept="image/*" #inputfile
                         (change)="changeImg($event,i)">
                     <button *ngIf="i > 0" class="btn btn-danger" (click)="deleteImageArray(i)">
